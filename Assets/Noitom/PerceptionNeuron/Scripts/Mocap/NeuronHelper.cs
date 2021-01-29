@@ -29,6 +29,8 @@ namespace Neuron
         V1 = 1,
         V2 = 2
     }
+
+    // axis neuron old bones
 	public enum NeuronBones
 	{
 		Hips 				= 0,
@@ -94,7 +96,7 @@ namespace Neuron
 		NumOfBones
 	}
 
-    // from trance bones
+    // from Pn Studio new bones
     public enum NeuronBonesV2
     {
         Hips = 0,

@@ -63,18 +63,13 @@ public class SkeletonTools: EditorWindow
 			Transform t = Selection.transforms[i];
 			NeuronAnimatorInstance animator_driver = t.GetComponent<NeuronAnimatorInstance>();
 			NeuronTransformsInstance transform_driver = t.GetComponent<NeuronTransformsInstance>();
-			NeuronTransformsInstanceVR transform_driverVR = t.GetComponent<NeuronTransformsInstanceVR>();
+
 
 			if( transform_driver != null)
 			{
 				new_objects.Add( t.gameObject );
 				new_prefixes.Add( transform_driver.prefix != "" ? transform_driver.prefix : default_prefix );
 			} 
-			else if( transform_driverVR != null)
-			{
-				new_objects.Add( t.gameObject );
-				new_prefixes.Add( transform_driverVR.prefix != "" ? transform_driverVR.prefix : default_prefix );
-			}
             else if (animator_driver != null)
             {
                 new_objects.Add(t.gameObject);

@@ -56,20 +56,15 @@ namespace Neuron
 				NeuronTransformsInstance referenceInstance = referenceObject.GetComponent<NeuronTransformsInstance> ();
 				if (referenceInstance != null) {
 					referenceInstance.motionUpdateMethod = Neuron.UpdateMethod.Normal;
-				} else {
-					NeuronTransformsInstanceVR referenceInstanceVR = referenceObject.GetComponent<NeuronTransformsInstanceVR> ();
-					if (referenceInstanceVR != null) {
-						referenceInstance.motionUpdateMethod = Neuron.UpdateMethod.Normal;
-					}
 				}
-			
+
 				// remove all unnecessary components, this will prevent rendering and any unexpected behaviour from custom scripts
 				Component[] components = referenceObject.GetComponentsInChildren<Component> ();
 				for (int i = 0; i < components.Length; ++i) {
 					Component c = components [i];
 					if (c.GetType () != typeof(Transform)
-						&& components [i].GetType () != typeof(NeuronTransformsInstance)
-						&& components [i].GetType () != typeof(NeuronTransformsInstanceVR) ) {
+						&& components [i].GetType () != typeof(NeuronTransformsInstance))
+                    {
 						GameObject.DestroyImmediate (c);
 					}
 				}
