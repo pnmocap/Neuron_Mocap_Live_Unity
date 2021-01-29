@@ -1,0 +1,136 @@
+﻿NeuronUnityIntegration Release Notes
+------------------------------------------
+Release date: Nov.2.2020
+Latest Version: 0.2.19
+
+NeuronUnityIntegration is the integration of Perception Neurons real-time data stream
+inside Unity. Compatible with Unity 2018.3.0f2 or Higher
+------------------------------------------
+CHANGES IN VERSION 0.2.19:
+
+* Fixed a bug that character's posture will be wrong when control by its parent object
+* Added PNStudio_Avatar_ThumbOpen example FBX file 
+* Updated the QuickStart scene 
+
+------------------------------------------
+CHANGES IN VERSION 0.2.18:
+
+* Fixed a bug that may cause "Add Colliders" operation failed in Neuron >SkeletonTools
+
+------------------------------------------
+CHANGES IN VERSION 0.2.17:
+
+* Updated StudioSampleModle
+* Added StudioFBXAnimation_Generic example scene
+* Added PNStudio_Avatar_SingleMesh example FBX file
+
+------------------------------------------
+CHANGES IN VERSION 0.2.16:
+
+* Increase session MaxPacketSize , avoid session blocking
+* Added StudioRobot_45_Zeroed Skeleton example FBX file
+* Added AxisStudioMapping.ht file
+* Removed some test script
+
+------------------------------------------
+CHANGES IN VERSION 0.2.15:
+
+* Added a flag "use New Rig" to fit Axis Studio software
+
+------------------------------------------
+CHANGES IN VERSION 0.2.14:
+
+* Fixed a bug that may cause "Add Colliders" operation failed
+
+------------------------------------------
+CHANGES IN VERSION 0.2.13:
+
+* Fixed a bug that may cause udp buffer out of bounds
+
+------------------------------------------
+CHANGES IN VERSION 0.2.12:
+
+* Moved FingerInspector script to Editor folder
+
+------------------------------------------
+CHANGES IN VERSION 0.2.11:
+
+* Fixed a bug that the model's style would be confusing when re-enable the Neuron script.
+* Disabled a log that would let users think the connection was not closed properly(actually closed properly).
+
+------------------------------------------
+CHANGES IN VERSION 0.2.10:
+
+* Modified the manual：Updated Known bugs.
+* Modify the NeuronTransformsInstance scripts' inspector, show each names of bones.
+* Removed the restriction that the rotation values of joints have to be zero out. It only needs to meet the following conditions to play normally:
+1 The bone structure of the model is consistent with the Neuron standard model
+2 The model is T-pos in unity
+3 The hips of your model do not allowed to have a parent node without zero out it's rotation values.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.9:
+
+* Updated the manual.
+  The following changes belong to Transforms mudul of Neuron Transforms Instance (script)
+* Removed the prefix setting of the bone name, instead using the NeuronBones name as the unique identifier.
+* Removed the restriction that all 59 bones must be bound.
+* Customized binding settings has higher priority and it will be saved automatiocally after clicking the "bind" button.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.8:
+
+* Updated the manual
+* Added FaceToVrCamera script and "TestNeuron vr" scene -- simple example to observe neuron-body in vr mode.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.7:
+
+* Updated the manual
+* Removed defunct and unnecessary scripts/examples.
+* Removed ProjectSettings folder as they're obsolete.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.7 BETA:
+
+* Removed Bone Collider prefab. Colliders are now explained in Noitom's Interaction SDK.
+* Updated VR example to work with current VR systems.
+* Removed Shutter keybinding example (obsolete).
+
+------------------------------------------
+CHANGES IN VERSION 0.2.6 BETA:
+
+* Removed DataReader DLL and switched to C# managed version for reading Axis Neuron Data Stream.
+* Changed compatability to Unity 5 only. Backwards compatability with Unity 4 is no longer guaranteed.
+* Removed examples to seperate package.
+* Removed SimpleDataStreamReading example (defunct).
+
+------------------------------------------
+CHANGES IN VERSION 0.2.5:
+
+* Removed command socket functions.
+* Removed inproper interpolation methods.
+* Updated to newest DataReader DLL.
+* Compatible with new and old Header data from Axis Neuron.
+* Added NeuronRobot Skeleton example FBX file.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.4:
+
+* Replaced single mesh model with a more optimized version (50% poly-count).
+* Fixed the OVR example to make it work with the newest Oculus Unity Integration.
+* Fixed a bug within the collider template prefab.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.3:
+
+* Added OSX bundle package of the BVH data stream reader.
+* Replaced the model and skeleton structure for higher finger motion accuraccy.
+
+------------------------------------------
+CHANGES IN VERSION 0.2.2:
+
+* Added example script and scene for combining the OVR rig with the skeleton tracking.
+* Removed the manual from the asset package to be provided as a separate download.
+
+------------------------------------------

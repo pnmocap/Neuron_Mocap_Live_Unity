@@ -1,0 +1,1545 @@
+fileFormatVersion: 2
+guid: f2d326fb8c50aca41a87083f45e86092
+timeCreated: 1606876389
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Noitom_Head
+    100002: Noitom_Head_End
+    100004: Noitom_Hips
+    100006: Noitom_LeftArm
+    100008: Noitom_LeftFoot
+    100010: Noitom_LeftForeArm
+    100012: Noitom_LeftHand
+    100014: Noitom_LeftHandIndex
+    100016: Noitom_LeftHandIndex1
+    100018: Noitom_LeftHandIndex2
+    100020: Noitom_LeftHandIndex3
+    100022: Noitom_LeftHandIndex_End
+    100024: Noitom_LeftHandMiddle
+    100026: Noitom_LeftHandMiddle1
+    100028: Noitom_LeftHandMiddle2
+    100030: Noitom_LeftHandMiddle3
+    100032: Noitom_LeftHandMiddle_End
+    100034: Noitom_LeftHandPinky
+    100036: Noitom_LeftHandPinky1
+    100038: Noitom_LeftHandPinky2
+    100040: Noitom_LeftHandPinky3
+    100042: Noitom_LeftHandPinky_End
+    100044: Noitom_LeftHandRing
+    100046: Noitom_LeftHandRing1
+    100048: Noitom_LeftHandRing2
+    100050: Noitom_LeftHandRing3
+    100052: Noitom_LeftHandRing_End
+    100054: Noitom_LeftHandThumb1
+    100056: Noitom_LeftHandThumb2
+    100058: Noitom_LeftHandThumb3
+    100060: Noitom_LeftHandThumb_End
+    100062: Noitom_LeftLeg
+    100064: Noitom_LeftShoulder
+    100066: Noitom_LeftToe_End
+    100068: Noitom_LeftToeBase
+    100070: Noitom_LeftUpLeg
+    100072: Noitom_Neck
+    100074: Noitom_Neck1
+    100076: Noitom_RightArm
+    100078: Noitom_RightFoot
+    100080: Noitom_RightForeArm
+    100082: Noitom_RightHand
+    100084: Noitom_RightHandIndex
+    100086: Noitom_RightHandIndex1
+    100088: Noitom_RightHandIndex2
+    100090: Noitom_RightHandIndex3
+    100092: Noitom_RightHandIndex_End
+    100094: Noitom_RightHandMiddle
+    100096: Noitom_RightHandMiddle1
+    100098: Noitom_RightHandMiddle2
+    100100: Noitom_RightHandMiddle3
+    100102: Noitom_RightHandMiddle_End
+    100104: Noitom_RightHandPinky
+    100106: Noitom_RightHandPinky1
+    100108: Noitom_RightHandPinky2
+    100110: Noitom_RightHandPinky3
+    100112: Noitom_RightHandPinky_End
+    100114: Noitom_RightHandRing
+    100116: Noitom_RightHandRing1
+    100118: Noitom_RightHandRing2
+    100120: Noitom_RightHandRing3
+    100122: Noitom_RightHandRing_End
+    100124: Noitom_RightHandThumb1
+    100126: Noitom_RightHandThumb2
+    100128: Noitom_RightHandThumb3
+    100130: Noitom_RightHandThumb_End
+    100132: Noitom_RightLeg
+    100134: Noitom_RightShoulder
+    100136: Noitom_RightToe_End
+    100138: Noitom_RightToeBase
+    100140: Noitom_RightUpLeg
+    100142: Noitom_Spine
+    100144: Noitom_Spine1
+    100146: Noitom_Spine2
+    100148: PN_Logo
+    100150: //RootNode
+    100152: SM_Head
+    100154: SM_Hips
+    100156: SM_LeftArm
+    100158: SM_LeftFoot
+    100160: SM_LeftFoot_End
+    100162: SM_LeftForeArm
+    100164: SM_LeftHand
+    100166: SM_LeftHandIndex1
+    100168: SM_LeftHandIndex2
+    100170: SM_LeftHandIndex3
+    100172: SM_LeftHandMiddle1
+    100174: SM_LeftHandMiddle2
+    100176: SM_LeftHandMiddle3
+    100178: SM_LeftHandPinky1
+    100180: SM_LeftHandPinky2
+    100182: SM_LeftHandPinky3
+    100184: SM_LeftHandRing1
+    100186: SM_LeftHandRing2
+    100188: SM_LeftHandRing3
+    100190: SM_LeftHandThumb1
+    100192: SM_LeftHandThumb2
+    100194: SM_LeftHandThumb3
+    100196: SM_LeftLeg
+    100198: SM_LeftShoulder
+    100200: SM_LeftUpLeg
+    100202: SM_Neck
+    100204: SM_Neck1
+    100206: SM_RightArm
+    100208: SM_RightFoot
+    100210: SM_RightFoot_End
+    100212: SM_RightForeArm
+    100214: SM_RightHand
+    100216: SM_RightHandIndex1
+    100218: SM_RightHandIndex2
+    100220: SM_RightHandIndex3
+    100222: SM_RightHandMiddle1
+    100224: SM_RightHandMiddle2
+    100226: SM_RightHandMiddle3
+    100228: SM_RightHandPinky1
+    100230: SM_RightHandPinky2
+    100232: SM_RightHandPinky3
+    100234: SM_RightHandRing1
+    100236: SM_RightHandRing2
+    100238: SM_RightHandRing3
+    100240: SM_RightHandThumb1
+    100242: SM_RightHandThumb2
+    100244: SM_RightHandThumb3
+    100246: SM_RightLeg
+    100248: SM_RightShoulder
+    100250: SM_RightUpLeg
+    100252: SM_Spine
+    100254: SM_Spine1
+    100256: SM_Spine6
+    400000: Noitom_Head
+    400002: Noitom_Head_End
+    400004: Noitom_Hips
+    400006: Noitom_LeftArm
+    400008: Noitom_LeftFoot
+    400010: Noitom_LeftForeArm
+    400012: Noitom_LeftHand
+    400014: Noitom_LeftHandIndex
+    400016: Noitom_LeftHandIndex1
+    400018: Noitom_LeftHandIndex2
+    400020: Noitom_LeftHandIndex3
+    400022: Noitom_LeftHandIndex_End
+    400024: Noitom_LeftHandMiddle
+    400026: Noitom_LeftHandMiddle1
+    400028: Noitom_LeftHandMiddle2
+    400030: Noitom_LeftHandMiddle3
+    400032: Noitom_LeftHandMiddle_End
+    400034: Noitom_LeftHandPinky
+    400036: Noitom_LeftHandPinky1
+    400038: Noitom_LeftHandPinky2
+    400040: Noitom_LeftHandPinky3
+    400042: Noitom_LeftHandPinky_End
+    400044: Noitom_LeftHandRing
+    400046: Noitom_LeftHandRing1
+    400048: Noitom_LeftHandRing2
+    400050: Noitom_LeftHandRing3
+    400052: Noitom_LeftHandRing_End
+    400054: Noitom_LeftHandThumb1
+    400056: Noitom_LeftHandThumb2
+    400058: Noitom_LeftHandThumb3
+    400060: Noitom_LeftHandThumb_End
+    400062: Noitom_LeftLeg
+    400064: Noitom_LeftShoulder
+    400066: Noitom_LeftToe_End
+    400068: Noitom_LeftToeBase
+    400070: Noitom_LeftUpLeg
+    400072: Noitom_Neck
+    400074: Noitom_Neck1
+    400076: Noitom_RightArm
+    400078: Noitom_RightFoot
+    400080: Noitom_RightForeArm
+    400082: Noitom_RightHand
+    400084: Noitom_RightHandIndex
+    400086: Noitom_RightHandIndex1
+    400088: Noitom_RightHandIndex2
+    400090: Noitom_RightHandIndex3
+    400092: Noitom_RightHandIndex_End
+    400094: Noitom_RightHandMiddle
+    400096: Noitom_RightHandMiddle1
+    400098: Noitom_RightHandMiddle2
+    400100: Noitom_RightHandMiddle3
+    400102: Noitom_RightHandMiddle_End
+    400104: Noitom_RightHandPinky
+    400106: Noitom_RightHandPinky1
+    400108: Noitom_RightHandPinky2
+    400110: Noitom_RightHandPinky3
+    400112: Noitom_RightHandPinky_End
+    400114: Noitom_RightHandRing
+    400116: Noitom_RightHandRing1
+    400118: Noitom_RightHandRing2
+    400120: Noitom_RightHandRing3
+    400122: Noitom_RightHandRing_End
+    400124: Noitom_RightHandThumb1
+    400126: Noitom_RightHandThumb2
+    400128: Noitom_RightHandThumb3
+    400130: Noitom_RightHandThumb_End
+    400132: Noitom_RightLeg
+    400134: Noitom_RightShoulder
+    400136: Noitom_RightToe_End
+    400138: Noitom_RightToeBase
+    400140: Noitom_RightUpLeg
+    400142: Noitom_Spine
+    400144: Noitom_Spine1
+    400146: Noitom_Spine2
+    400148: PN_Logo
+    400150: //RootNode
+    400152: SM_Head
+    400154: SM_Hips
+    400156: SM_LeftArm
+    400158: SM_LeftFoot
+    400160: SM_LeftFoot_End
+    400162: SM_LeftForeArm
+    400164: SM_LeftHand
+    400166: SM_LeftHandIndex1
+    400168: SM_LeftHandIndex2
+    400170: SM_LeftHandIndex3
+    400172: SM_LeftHandMiddle1
+    400174: SM_LeftHandMiddle2
+    400176: SM_LeftHandMiddle3
+    400178: SM_LeftHandPinky1
+    400180: SM_LeftHandPinky2
+    400182: SM_LeftHandPinky3
+    400184: SM_LeftHandRing1
+    400186: SM_LeftHandRing2
+    400188: SM_LeftHandRing3
+    400190: SM_LeftHandThumb1
+    400192: SM_LeftHandThumb2
+    400194: SM_LeftHandThumb3
+    400196: SM_LeftLeg
+    400198: SM_LeftShoulder
+    400200: SM_LeftUpLeg
+    400202: SM_Neck
+    400204: SM_Neck1
+    400206: SM_RightArm
+    400208: SM_RightFoot
+    400210: SM_RightFoot_End
+    400212: SM_RightForeArm
+    400214: SM_RightHand
+    400216: SM_RightHandIndex1
+    400218: SM_RightHandIndex2
+    400220: SM_RightHandIndex3
+    400222: SM_RightHandMiddle1
+    400224: SM_RightHandMiddle2
+    400226: SM_RightHandMiddle3
+    400228: SM_RightHandPinky1
+    400230: SM_RightHandPinky2
+    400232: SM_RightHandPinky3
+    400234: SM_RightHandRing1
+    400236: SM_RightHandRing2
+    400238: SM_RightHandRing3
+    400240: SM_RightHandThumb1
+    400242: SM_RightHandThumb2
+    400244: SM_RightHandThumb3
+    400246: SM_RightLeg
+    400248: SM_RightShoulder
+    400250: SM_RightUpLeg
+    400252: SM_Spine
+    400254: SM_Spine1
+    400256: SM_Spine6
+    2300000: PN_Logo
+    2300002: SM_Head
+    2300004: SM_Hips
+    2300006: SM_LeftArm
+    2300008: SM_LeftFoot
+    2300010: SM_LeftFoot_End
+    2300012: SM_LeftForeArm
+    2300014: SM_LeftHand
+    2300016: SM_LeftHandIndex1
+    2300018: SM_LeftHandIndex2
+    2300020: SM_LeftHandIndex3
+    2300022: SM_LeftHandMiddle1
+    2300024: SM_LeftHandMiddle2
+    2300026: SM_LeftHandMiddle3
+    2300028: SM_LeftHandPinky1
+    2300030: SM_LeftHandPinky2
+    2300032: SM_LeftHandPinky3
+    2300034: SM_LeftHandRing1
+    2300036: SM_LeftHandRing2
+    2300038: SM_LeftHandRing3
+    2300040: SM_LeftHandThumb1
+    2300042: SM_LeftHandThumb2
+    2300044: SM_LeftHandThumb3
+    2300046: SM_LeftLeg
+    2300048: SM_LeftShoulder
+    2300050: SM_LeftUpLeg
+    2300052: SM_Neck
+    2300054: SM_Neck1
+    2300056: SM_RightArm
+    2300058: SM_RightFoot
+    2300060: SM_RightFoot_End
+    2300062: SM_RightForeArm
+    2300064: SM_RightHand
+    2300066: SM_RightHandIndex1
+    2300068: SM_RightHandIndex2
+    2300070: SM_RightHandIndex3
+    2300072: SM_RightHandMiddle1
+    2300074: SM_RightHandMiddle2
+    2300076: SM_RightHandMiddle3
+    2300078: SM_RightHandPinky1
+    2300080: SM_RightHandPinky2
+    2300082: SM_RightHandPinky3
+    2300084: SM_RightHandRing1
+    2300086: SM_RightHandRing2
+    2300088: SM_RightHandRing3
+    2300090: SM_RightHandThumb1
+    2300092: SM_RightHandThumb2
+    2300094: SM_RightHandThumb3
+    2300096: SM_RightLeg
+    2300098: SM_RightShoulder
+    2300100: SM_RightUpLeg
+    2300102: SM_Spine
+    2300104: SM_Spine1
+    2300106: SM_Spine6
+    3300000: PN_Logo
+    3300002: SM_Head
+    3300004: SM_Hips
+    3300006: SM_LeftArm
+    3300008: SM_LeftFoot
+    3300010: SM_LeftFoot_End
+    3300012: SM_LeftForeArm
+    3300014: SM_LeftHand
+    3300016: SM_LeftHandIndex1
+    3300018: SM_LeftHandIndex2
+    3300020: SM_LeftHandIndex3
+    3300022: SM_LeftHandMiddle1
+    3300024: SM_LeftHandMiddle2
+    3300026: SM_LeftHandMiddle3
+    3300028: SM_LeftHandPinky1
+    3300030: SM_LeftHandPinky2
+    3300032: SM_LeftHandPinky3
+    3300034: SM_LeftHandRing1
+    3300036: SM_LeftHandRing2
+    3300038: SM_LeftHandRing3
+    3300040: SM_LeftHandThumb1
+    3300042: SM_LeftHandThumb2
+    3300044: SM_LeftHandThumb3
+    3300046: SM_LeftLeg
+    3300048: SM_LeftShoulder
+    3300050: SM_LeftUpLeg
+    3300052: SM_Neck
+    3300054: SM_Neck1
+    3300056: SM_RightArm
+    3300058: SM_RightFoot
+    3300060: SM_RightFoot_End
+    3300062: SM_RightForeArm
+    3300064: SM_RightHand
+    3300066: SM_RightHandIndex1
+    3300068: SM_RightHandIndex2
+    3300070: SM_RightHandIndex3
+    3300072: SM_RightHandMiddle1
+    3300074: SM_RightHandMiddle2
+    3300076: SM_RightHandMiddle3
+    3300078: SM_RightHandPinky1
+    3300080: SM_RightHandPinky2
+    3300082: SM_RightHandPinky3
+    3300084: SM_RightHandRing1
+    3300086: SM_RightHandRing2
+    3300088: SM_RightHandRing3
+    3300090: SM_RightHandThumb1
+    3300092: SM_RightHandThumb2
+    3300094: SM_RightHandThumb3
+    3300096: SM_RightLeg
+    3300098: SM_RightShoulder
+    3300100: SM_RightUpLeg
+    3300102: SM_Spine
+    3300104: SM_Spine1
+    3300106: SM_Spine6
+    4300000: SM_RightFoot_End
+    4300002: SM_RightFoot
+    4300004: SM_RightLeg
+    4300006: SM_RightUpLeg
+    4300008: SM_LeftFoot_End
+    4300010: SM_LeftFoot
+    4300012: SM_LeftLeg
+    4300014: SM_LeftUpLeg
+    4300016: SM_Head
+    4300018: SM_Neck1
+    4300020: SM_Neck
+    4300022: SM_RightHandThumb3
+    4300024: SM_RightHandThumb2
+    4300026: SM_RightHandThumb1
+    4300028: SM_RightHandIndex3
+    4300030: SM_RightHandIndex2
+    4300032: SM_RightHandIndex1
+    4300034: SM_RightHandMiddle3
+    4300036: SM_RightHandMiddle2
+    4300038: SM_RightHandMiddle1
+    4300040: SM_RightHandRing3
+    4300042: SM_RightHandRing2
+    4300044: SM_RightHandRing1
+    4300046: SM_RightHandPinky3
+    4300048: SM_RightHandPinky2
+    4300050: SM_RightHandPinky1
+    4300052: SM_RightHand
+    4300054: SM_RightForeArm
+    4300056: SM_RightArm
+    4300058: SM_RightShoulder
+    4300060: SM_LeftHandThumb3
+    4300062: SM_LeftHandThumb2
+    4300064: SM_LeftHandThumb1
+    4300066: SM_LeftHandIndex3
+    4300068: SM_LeftHandIndex2
+    4300070: SM_LeftHandIndex1
+    4300072: SM_LeftHandMiddle3
+    4300074: SM_LeftHandMiddle2
+    4300076: SM_LeftHandMiddle1
+    4300078: SM_LeftHandRing3
+    4300080: SM_LeftHandRing2
+    4300082: SM_LeftHandRing1
+    4300084: SM_LeftHandPinky3
+    4300086: SM_LeftHandPinky2
+    4300088: SM_LeftHandPinky1
+    4300090: SM_LeftHand
+    4300092: SM_LeftForeArm
+    4300094: SM_LeftArm
+    4300096: SM_LeftShoulder
+    4300098: SM_Spine6
+    4300100: PN_Logo
+    4300102: SM_Spine1
+    4300104: SM_Spine
+    4300106: SM_Hips
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Noitom_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_Spine1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_Spine2
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandMiddle
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandMiddle1
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandMiddle2
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandMiddle
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandMiddle1
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandMiddle2
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Noitom_RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: PNStudio_Avatar_DefaultSize(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Hips
+      position: {x: -0, y: 0.96619004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftUpLeg
+      position: {x: -0.11, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftLeg
+      position: {x: -0, y: -0.45062, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftFoot
+      position: {x: -0, y: -0.42057997, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftToeBase
+      position: {x: -0, y: -0.072600484, z: 0.1701}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftToe_End
+      position: {x: -0, y: 0, z: 0.055}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftFoot_End
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftFoot
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftLeg
+      position: {x: -0, y: 0, z: -1.3471114e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftUpLeg
+      position: {x: -0, y: 0, z: -1.3471114e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightUpLeg
+      position: {x: 0.11, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightLeg
+      position: {x: -0, y: -0.45062, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightFoot
+      position: {x: -0, y: -0.42057997, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightToeBase
+      position: {x: -0, y: -0.072600484, z: 0.1701}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightToe_End
+      position: {x: -0, y: 0, z: 0.055}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightFoot_End
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightFoot
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightLeg
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightUpLeg
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Spine
+      position: {x: -0, y: 0.081199996, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Spine1
+      position: {x: -0, y: 0.17979999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Spine2
+      position: {x: -0, y: 0.1276, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftShoulder
+      position: {x: -0.029000001, y: 0.1334, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftArm
+      position: {x: -0.161, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftForeArm
+      position: {x: -0.28, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHand
+      position: {x: -0.26, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandIndex
+      position: {x: -0.035, y: 0.0055199997, z: 0.02148}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandIndex1
+      position: {x: -0.05664, y: -0.00099, z: 0.01085}
+      rotation: {x: -0, y: 0.042689938, z: -0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandIndex2
+      position: {x: -0.0393, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandIndex3
+      position: {x: -0.022279998, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandIndex_End
+      position: {x: -0.0196, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandIndex3
+      position: {x: 0.0000060066222, y: 0.00008204773, z: -2.220446e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandIndex2
+      position: {x: 0.0000038139344, y: 0.00008204773, z: 8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandIndex1
+      position: {x: -0, y: 0.00008204773, z: 4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandMiddle
+      position: {x: -0.03672, y: 0.0056199995, z: 0.00822}
+      rotation: {x: -0.001800043, y: 0.022739489, z: -0.023588035, w: 0.99946153}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandMiddle1
+      position: {x: -0.05618, y: -0.00090999994, z: 0.00341}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandMiddle2
+      position: {x: -0.04288, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandMiddle3
+      position: {x: -0.02688, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandMiddle_End
+      position: {x: -0.02144, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandMiddle3
+      position: {x: 0.0000067739484, y: -0.000037909318, z: -2.375877e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandMiddle2
+      position: {x: 0.000024719238, y: -0.000037909318, z: 4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandMiddle1
+      position: {x: -0, y: -0.000037909318, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandPinky
+      position: {x: -0.034319997, y: 0.0050999997, z: -0.013049999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandPinky1
+      position: {x: -0.044959996, y: -0.00024, z: -0.01184}
+      rotation: {x: -0, y: 0.042689938, z: -0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandPinky2
+      position: {x: -0.02993, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandPinky3
+      position: {x: -0.01891, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandPinky_End
+      position: {x: -0.01786, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandPinky3
+      position: {x: 0.000004675293, y: -0.000037886428, z: -2.0872193e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandPinky2
+      position: {x: 0.0000028165816, y: -0.000037886428, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandPinky1
+      position: {x: -0, y: -0.000037886428, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandRing
+      position: {x: -0.036539998, y: 0.0058399998, z: -0.0014}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandRing1
+      position: {x: -0.05032, y: -0.00024, z: -0.0051999995}
+      rotation: {x: -0, y: 0.042689938, z: -0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandRing2
+      position: {x: -0.03737, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandRing3
+      position: {x: -0.025929999, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandRing_End
+      position: {x: -0.02016, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandRing3
+      position: {x: 0.0000062385557, y: -0.000037891004, z: -2.264855e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandRing2
+      position: {x: 0.0000037208556, y: -0.000037891004, z: 3.330669e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandRing1
+      position: {x: -0, y: -0.000037891004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandThumb1
+      position: {x: -0.027019998, y: 0.0020599999, z: 0.03388}
+      rotation: {x: -0, y: 0.42726347, z: -0.047114387, w: 0.9028988}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandThumb2
+      position: {x: -0.039979998, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandThumb3
+      position: {x: -0.02778, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_LeftHandThumb_End
+      position: {x: -0.02382, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandThumb3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandThumb2
+      position: {x: 0.000004196167, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHandThumb1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftHand
+      position: {x: -0.000000033939852, y: -0.00003736267, z: -1.6856548e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftForeArm
+      position: {x: -0.005891571, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftArm
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_LeftShoulder
+      position: {x: -0, y: -0.000000028610229, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.1653323, y: 1.1653323, z: 1.1653323}
+      transformModified: 1
+    - name: Noitom_Neck
+      position: {x: -0, y: 0.19139999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Neck1
+      position: {x: -0, y: 0.0425, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Head
+      position: {x: -0, y: 0.0425, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_Head_End
+      position: {x: -0, y: 0.19126846, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_Head
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_Neck1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.3934727, y: 1.151035, z: 1.3934727}
+      transformModified: 1
+    - name: SM_Neck
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.3934727, y: 1.151035, z: 1.3934727}
+      transformModified: 1
+    - name: Noitom_RightShoulder
+      position: {x: 0.029000001, y: 0.1334, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightArm
+      position: {x: 0.161, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightForeArm
+      position: {x: 0.28, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHand
+      position: {x: 0.26, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandIndex
+      position: {x: 0.035, y: 0.0055199997, z: 0.02148}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandIndex1
+      position: {x: 0.05664, y: -0.00099, z: 0.01085}
+      rotation: {x: -0, y: -0.042689938, z: 0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandIndex2
+      position: {x: 0.0393, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandIndex3
+      position: {x: 0.022279998, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandIndex_End
+      position: {x: 0.0196, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandIndex3
+      position: {x: -0.0000060066222, y: 0.00008204773, z: -2.220446e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandIndex2
+      position: {x: -0.0000038139344, y: 0.00008204773, z: 8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandIndex1
+      position: {x: -0, y: 0.00008204773, z: 4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandMiddle
+      position: {x: 0.03672, y: 0.0056199995, z: 0.00822}
+      rotation: {x: -0.001800043, y: -0.022739489, z: 0.023588035, w: 0.99946153}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandMiddle1
+      position: {x: 0.05618, y: -0.00090999994, z: 0.00341}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandMiddle2
+      position: {x: 0.04288, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandMiddle3
+      position: {x: 0.02688, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandMiddle_End
+      position: {x: 0.02144, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandMiddle3
+      position: {x: -0.0000067739484, y: -0.000037909318, z: -2.375877e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandMiddle2
+      position: {x: -0, y: -0.000037909318, z: 4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandMiddle1
+      position: {x: -0, y: -0.000037909318, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandPinky
+      position: {x: 0.034319997, y: 0.0050999997, z: -0.013049999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandPinky1
+      position: {x: 0.044959996, y: -0.00024, z: -0.01184}
+      rotation: {x: -0, y: -0.042689938, z: 0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandPinky2
+      position: {x: 0.02993, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandPinky3
+      position: {x: 0.01891, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandPinky_End
+      position: {x: 0.01786, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandPinky3
+      position: {x: -0.000004675293, y: -0.000037886428, z: -2.0872193e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandPinky2
+      position: {x: -0.0000028165816, y: -0.000037886428, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandPinky1
+      position: {x: -0, y: -0.000037886428, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandRing
+      position: {x: 0.036539998, y: 0.0058399998, z: -0.0014}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandRing1
+      position: {x: 0.05032, y: -0.00024, z: -0.0051999995}
+      rotation: {x: -0, y: -0.042689938, z: 0.029187053, w: 0.99866194}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandRing2
+      position: {x: 0.03737, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandRing3
+      position: {x: 0.025929999, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandRing_End
+      position: {x: 0.02016, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandRing3
+      position: {x: -0.0000062385557, y: -0.000037891004, z: -2.264855e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandRing2
+      position: {x: -0.0000037208556, y: -0.000037891004, z: 3.330669e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandRing1
+      position: {x: -0, y: -0.000037891004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandThumb1
+      position: {x: 0.027019998, y: 0.0020599999, z: 0.03388}
+      rotation: {x: -0, y: -0.42726347, z: 0.047114387, w: 0.9028988}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandThumb2
+      position: {x: 0.039979998, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandThumb3
+      position: {x: 0.02778, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Noitom_RightHandThumb_End
+      position: {x: 0.02382, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandThumb3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandThumb2
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHandThumb1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightHand
+      position: {x: 0.000000033939852, y: -0.00003736267, z: -1.6856548e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightForeArm
+      position: {x: 0.005891571, y: 0.000000028610229, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightArm
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_RightShoulder
+      position: {x: -0, y: -0.000000028610229, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.1653323, y: 1.1653323, z: 1.1653323}
+      transformModified: 1
+    - name: SM_Spine6
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: PN_Logo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_Spine1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_Spine
+      position: {x: -3.9443044e-33, y: 0.000000028610229, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: SM_Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
