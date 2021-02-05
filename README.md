@@ -23,13 +23,16 @@ Run QuickStart Scene
 ## Usage
 
 * Live motion data to animator or common avatar transform
+
   add "NeuronAnimatorInstance.cs" or "NeuronTransformsInstance.cs" component to your avatar gameobject
   
 * Live  rigidbody props data from PNSHybridMocap
+
   add "NeuronRigidbody.cs" component to your prop gameobject
 
 
-## Public Variables of Neuronanimatorinstance.cs
+## Public Variables of "Neuronanimatorinstance.cs"
+
 *	**Address** is the IP address of the machine running Axis Studio. If it's the same computer, the address should be 127.0.0.1. You can use this stream motion data from any other computer in the same network. In this case change the address accordingly.
 *	**Port Tcp** is the port number associated with the BVH data stream output setting in Axis for tcp
 *	**Port Udp** is the port number associated with the BVH data stream output setting in Axis for udp
