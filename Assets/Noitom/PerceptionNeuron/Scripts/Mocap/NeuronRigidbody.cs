@@ -1,5 +1,5 @@
 /************************************************************************************
- Copyright: Copyright 2020 Beijing Noitom Technology Ltd. All Rights reserved.
+ Copyright: Copyright 2021 Beijing Noitom Technology Ltd. All Rights reserved.
  Pending Patents: PCT/CN2014/085659 PCT/CN2014/071006
 
  Licensed under the Perception Neuron SDK License Beta Version (the “License");

@@ -29,9 +29,9 @@ public class NeuronRigidbodyInstanceEditor : Editor
             rigidbodyField = serializedObject.FindProperty("rigidbodyId");
         }
         EditorGUILayout.PropertyField(addressField);
-        if (script.socketType == Neuron.NeuronConnection.SocketType.TCP)
+        if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
             EditorGUILayout.PropertyField(tcpPortField);
-        else if (script.socketType == Neuron.NeuronConnection.SocketType.UDP)
+        else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
             EditorGUILayout.PropertyField(udpPortField);
 
         EditorGUILayout.PropertyField(tcpOrUdpField);

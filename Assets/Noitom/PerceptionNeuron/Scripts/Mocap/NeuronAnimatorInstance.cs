@@ -1,5 +1,5 @@
 /************************************************************************************
- Copyright: Copyright 2020 Beijing Noitom Technology Ltd. All Rights reserved.
+ Copyright: Copyright 2021 Beijing Noitom Technology Ltd. All Rights reserved.
  Pending Patents: PCT/CN2014/085659 PCT/CN2014/071006
 
  Licensed under the Perception Neuron SDK License Beta Version (the “License");
@@ -30,7 +30,6 @@ public class NeuronAnimatorInstance : NeuronInstance
 
 	public bool enableHipMove = true;
     public bool enableFingerMove = true;
-    public bool useNewRig = true;
 
     [Header("use an already existing NeuronAnimatorInstance as the physical reference source")]
     [HideInInspector]
@@ -169,7 +168,7 @@ public class NeuronAnimatorInstance : NeuronInstance
 			
 			// spine
 			SetPosition( animator, HumanBodyBones.Spine,					actor.GetReceivedPosition( NeuronBones.Spine, this.orignalPositions[(int)HumanBodyBones.Spine]) );
-            if (useNewRig)
+            if ((skeletonType == NeuronEnums.SkeletonType.PerceptionNeuronStudio))
             {
                 SetPosition(animator, HumanBodyBones.Chest,
                      actor.GetReceivedPosition(NeuronBones.Spine1, this.orignalPositions[(int)HumanBodyBones.Chest])
@@ -265,7 +264,7 @@ public class NeuronAnimatorInstance : NeuronInstance
 		// spine
 		SetRotation( animator, HumanBodyBones.Spine,					actor.GetReceivedRotation( NeuronBones.Spine ) );
         //SetRotation( animator, HumanBodyBones.Chest,					actor.GetReceivedRotation( NeuronBones.Spine1 ) + actor.GetReceivedRotation( NeuronBones.Spine2 ) + actor.GetReceivedRotation( NeuronBones.Spine3 ) ); 
-        if (useNewRig)
+        if ((skeletonType == NeuronEnums.SkeletonType.PerceptionNeuronStudio))
         {
             SetRotation(animator, HumanBodyBones.Chest,
                 (EulerToQuaternion(actor.GetReceivedRotation(NeuronBones.Spine1)) *
@@ -546,7 +545,7 @@ public class NeuronAnimatorInstance : NeuronInstance
         {
             Quaternion parentQs = Quaternion.identity;
             Transform t = boundAnimator.GetBoneTransform((HumanBodyBones)i);
-            if (t == null)
+            if (t == null || i == (int)HumanBodyBones.Hips)
             {
                 orignalParentRot[i] = Quaternion.identity;
                 continue;
@@ -556,7 +555,7 @@ public class NeuronAnimatorInstance : NeuronInstance
             {
                 parentQs = tempParent.transform.localRotation * parentQs;
                 tempParent = tempParent.parent;
-                if (tempParent == null || tempParent == this.transform || (t0 != null && tempParent == t0.transform.parent))
+                if (tempParent == null || tempParent == transform || (t0 != null && tempParent == t0.transform.parent)  )
                         break;
             }
             orignalParentRot[i] = parentQs;

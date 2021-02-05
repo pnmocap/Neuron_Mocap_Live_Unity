@@ -1,5 +1,5 @@
 /************************************************************************************
- Copyright: Copyright 2020 Beijing Noitom Technology Ltd. All Rights reserved.
+ Copyright: Copyright 2021 Beijing Noitom Technology Ltd. All Rights reserved.
  Pending Patents: PCT/CN2014/085659 PCT/CN2014/071006
 
  Licensed under the Perception Neuron SDK License Beta Version (the “License");
@@ -28,7 +28,6 @@ namespace Neuron
         [Space(10)]
         public bool enableHipMove = true;
         public bool enableFingerMove = true;
-        public bool useNewRig = true;
         public Transform					root = null;
         //
         // Obsolete don't use it
@@ -300,7 +299,7 @@ namespace Neuron
 			this.root = root;
 			this.prefix = prefix;
 			//int bound_count = 
-            NeuronHelper.Bind( root, transforms, prefix, false, useNewRig ? NeuronBoneVersion.V2 : NeuronBoneVersion.V1);
+            NeuronHelper.Bind( root, transforms, prefix, false, (skeletonType == NeuronEnums.SkeletonType.PerceptionNeuronStudio) ? NeuronBoneVersion.V2 : NeuronBoneVersion.V1);
             boundTransforms = true; // bound_count >= (int)NeuronBones.NumOfBones;
 			UpdateOffset();
             CaluateOrignalRot();

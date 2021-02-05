@@ -26,10 +26,13 @@ public class NeuronAnimatorInstanceEditor : Editor
             udpPortField = serializedObject.FindProperty("portUdp");
             physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
         }
-        EditorGUILayout.PropertyField(addressField);
-        if (script.socketType == Neuron.NeuronConnection.SocketType.TCP)
+
+        if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
+        {
+            EditorGUILayout.PropertyField(addressField);
             EditorGUILayout.PropertyField(tcpPortField);
-        else if (script.socketType == Neuron.NeuronConnection.SocketType.UDP)
+        }
+        else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
             EditorGUILayout.PropertyField(udpPortField);
         serializedObject.ApplyModifiedProperties();
 

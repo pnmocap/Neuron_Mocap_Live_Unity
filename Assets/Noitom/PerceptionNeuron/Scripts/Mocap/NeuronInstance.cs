@@ -1,5 +1,5 @@
 /************************************************************************************
- Copyright: Copyright 2014 Beijing Noitom Technology Ltd. All Rights reserved.
+ Copyright: Copyright 2021 Beijing Noitom Technology Ltd. All Rights reserved.
  Pending Patents: PCT/CN2014/085659 PCT/CN2014/071006
 
  Licensed under the Perception Neuron SDK License Beta Version (the “License");
@@ -41,7 +41,7 @@ namespace Neuron
         public int							portTcp = 7003;
         [HideInInspector]
         public int                          portUdp = 7004;
-        public NeuronConnection.SocketType	socketType = NeuronConnection.SocketType.TCP;
+        public NeuronEnums.SocketType	socketType = NeuronEnums.SocketType.TCP;
         //[Space(5)]
         [Header("Index of avatar in axis software, default is zero")]
         public int							actorID = 0;
@@ -49,6 +49,8 @@ namespace Neuron
         //[Space(10)]
         [Header("Whether to connect to axis software")]
         public bool							connectToAxis = true;
+
+        public NeuronEnums.SkeletonType skeletonType = NeuronEnums.SkeletonType.PerceptionNeuronStudio;
         protected bool                      hasConnected;
 
 		protected NeuronActor				boundActor = null;
@@ -65,7 +67,7 @@ namespace Neuron
 		//{
 		//}
 
-		//public NeuronInstance( string address, int port, int commandServerPort, NeuronConnection.SocketType socketType, int actorID )
+		//public NeuronInstance( string address, int port, int commandServerPort, NeuronEnums.SocketType socketType, int actorID )
 		//{
 		//	//standalone = true;
 		//}
@@ -105,7 +107,7 @@ namespace Neuron
 
 		protected void RegisterCallbacks()
 		{
-            Debug.LogError("RegisterCallbacks");
+            Debug.Log("RegisterCallbacks");
 			if( boundActor != null )
 			{
 				boundActor.RegisterNoFrameDataCallback( OnNoFrameData );
@@ -163,13 +165,13 @@ namespace Neuron
 
         int GetPortByConnectionType()
         {
-            return socketType == NeuronConnection.SocketType.TCP ? portTcp : portUdp;
+            return socketType == NeuronEnums.SocketType.TCP ? portTcp : portUdp;
         }
 
 		protected bool Connect()
 		{
             //source = NeuronConnection.Connect( address, port, commandServerPort, socketType );
-            source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), socketType);
+            source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), socketType, skeletonType);
 
             if ( source != null )
 			{

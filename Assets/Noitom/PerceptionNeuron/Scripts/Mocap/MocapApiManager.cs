@@ -13,7 +13,7 @@ public static class MocapApiManager
     static List<NeuronSource> AllNeuronSources = new List < NeuronSource >();
     static Dictionary<string, ulong> connectionApplications = new Dictionary<string, ulong>();
 
-    public static NeuronSource RequareConnection(string address, int port,  NeuronConnection.SocketType socketType)
+    public static NeuronSource RequareConnection(string address, int port,  NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
         string connStrId = GetConnectionStringId(address, port, socketType);
         ulong applicationHandle;
@@ -23,7 +23,7 @@ public static class MocapApiManager
         }
         else
         {
-            applicationHandle = CreateApplicationConnection(address, port, socketType);
+            applicationHandle = CreateApplicationConnection(address, port, socketType, skeletonType);
             connectionApplications.Add(connStrId, applicationHandle);
         }
 
@@ -43,12 +43,12 @@ public static class MocapApiManager
         }
     }
 
-    static string GetConnectionStringId(string address, int port, NeuronConnection.SocketType socketType)
+    static string GetConnectionStringId(string address, int port, NeuronEnums.SocketType socketType)
     {
         return address +"__" + port + "__" + socketType;
     }
 
-    static ulong CreateApplicationConnection(string address, int port, NeuronConnection.SocketType socketType)
+    static ulong CreateApplicationConnection(string address, int port, NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
 
         ulong applicationHandle = 0;
@@ -57,10 +57,13 @@ public static class MocapApiManager
         {
             ulong settings = 0;
             IMCPSettings.Settings.CreateSettings(ref settings);
-            IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary, settings);
+            if(skeletonType ==  NeuronEnums.SkeletonType.PerceptionNeuronStudio)
+                IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary, settings);
+            else
+                IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary | EMCPBvhData.BvhDataType_Mask_LegacyHumanHierarchy, settings);
             IMCPSettings.Settings.SetSettingsBvhRotation(EMCPBvhRotation.BvhRotation_YXZ, settings);
             IMCPSettings.Settings.SetSettingsBvhTransformation(EMCPBvhTransformation.BvhTransformation_Enable, settings);
-            if(socketType == NeuronConnection.SocketType.UDP)
+            if(socketType == NeuronEnums.SocketType.UDP)
                 IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
             else
                 IMCPSettings.Settings.SetSettingsTCP(address, (ushort)port, settings);
@@ -112,6 +115,7 @@ public static class MocapApiManager
     {
         if (lastUpdateFrame == unityFrame)
             return;
+        lastUpdateFrame = unityFrame;
         if (MCPEvent_tSize == 0)
         {
             MCPEvent_tSize = (uint)Marshal.SizeOf(typeof(MCPEvent_t));
@@ -154,7 +158,7 @@ public static class MocapApiManager
         }
 
     }
-    //static string xxx = "";
+
     static void HandleAvatarUpdated(ulong avatarHandle, NeuronSource neuronSource)
     {
         //xxx = "";
@@ -246,6 +250,11 @@ public static class MocapApiManager
         EMCPJointTag pJointTag = EMCPJointTag.JointTag_Invalid;
         IMCPJoint.Joint.GetJointTag(ref pJointTag, parentJointHandle);
         int boneId = (int)pJointTag;
+        // mocapapi 枚举和neuron枚举不一致, 对于在axis数据的spine3需要这样人工处理一下
+        if (pJointTag == EMCPJointTag.JointTag_Spine3)
+        {
+            boneId = (int)NeuronBones.Spine3;
+        }
 
         if (boneId >= 0 && boneId < (int)NeuronBones.NumOfBones)
         {
@@ -277,7 +286,7 @@ public static class MocapApiManager
 
 
     public static int numOfSources { get { return AllNeuronSources.Count; } }
-    static NeuronSource RequareNeuronSourceInConnection(string address, int port, NeuronConnection.SocketType socketType)
+    static NeuronSource RequareNeuronSourceInConnection(string address, int port, NeuronEnums.SocketType socketType)
     {
         NeuronSource source = FindNeuronSourceInConnection(address, port, socketType);
         if (source != null)
@@ -295,26 +304,26 @@ public static class MocapApiManager
 
         return null;
     }
-    static NeuronSource CreateConnection(string address, int port, NeuronConnection.SocketType socketType)
+    static NeuronSource CreateConnection(string address, int port, NeuronEnums.SocketType socketType)
     {
         NeuronSource source = null;
         source = new NeuronSource(address, port, socketType);
         AllNeuronSources.Add(source);
         return source;
     }
-    static NeuronSource FindNeuronSourceInConnection(string address, int port, NeuronConnection.SocketType socketType)
+    static NeuronSource FindNeuronSourceInConnection(string address, int port, NeuronEnums.SocketType socketType)
     {
         NeuronSource source = null;
         for (int i = 0; i < AllNeuronSources.Count; i++)
         {
             var it = AllNeuronSources[i];
 
-            if (it.socketType == NeuronConnection.SocketType.UDP && socketType == NeuronConnection.SocketType.UDP && it.port == port)
+            if (it.socketType == NeuronEnums.SocketType.UDP && socketType == NeuronEnums.SocketType.UDP && it.port == port)
             {
                 source = it;
                 break;
             }
-            else if (it.socketType == NeuronConnection.SocketType.TCP && socketType == NeuronConnection.SocketType.TCP && it.address == address && it.port == port)
+            else if (it.socketType == NeuronEnums.SocketType.TCP && socketType == NeuronEnums.SocketType.TCP && it.address == address && it.port == port)
             {
                 source = it;
                 break;

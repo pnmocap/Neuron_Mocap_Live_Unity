@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using Neuron;
 
 [CustomEditor(typeof(Neuron.NeuronTransformsInstance))]
 public class NeuronTransformsInstanceEditor : Editor 
@@ -22,7 +23,7 @@ public class NeuronTransformsInstanceEditor : Editor
     {
         Neuron.NeuronTransformsInstance script = (Neuron.NeuronTransformsInstance)target;
 
-        bool preUseNewRig = script.useNewRig;
+        int preUseNewRig = (int)script.skeletonType;
         if (addressField == null)
         {
             addressField = serializedObject.FindProperty("address");
@@ -30,14 +31,17 @@ public class NeuronTransformsInstanceEditor : Editor
             udpPortField = serializedObject.FindProperty("portUdp");
             physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
         }
-        EditorGUILayout.PropertyField(addressField);
-        if (script.socketType == Neuron.NeuronConnection.SocketType.TCP)
+
+        if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
+        {
+            EditorGUILayout.PropertyField(addressField);
             EditorGUILayout.PropertyField(tcpPortField);
-        else if (script.socketType == Neuron.NeuronConnection.SocketType.UDP)
+        }
+        else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
             EditorGUILayout.PropertyField(udpPortField);
         serializedObject.ApplyModifiedProperties();
         DrawDefaultInspector();
-        if(preUseNewRig != script.useNewRig)
+        if(preUseNewRig != (int)script.skeletonType)
         {
             if (script.root == null)
                 script.root = script.transform;
@@ -82,7 +86,7 @@ public class NeuronTransformsInstanceEditor : Editor
             //EditorGUILayout.PropertyField(transformsField.FindPropertyRelative("Array.size"));
             for (int i = 0; i < transformsField.arraySize; i++)
             {
-                if (script.useNewRig && (i == (int)Neuron.NeuronBones.Spine3 || i == (int)Neuron.NeuronBones.Neck))
+                if ((script.skeletonType == (int)(NeuronEnums.SkeletonType.PerceptionNeuronStudio)) && (i == (int)Neuron.NeuronBones.Spine3 || i == (int)Neuron.NeuronBones.Neck))
                     EditorGUILayout.PropertyField(transformsField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBonesV2)i).ToString()));
                 else
                     EditorGUILayout.PropertyField(transformsField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBones)i).ToString()));

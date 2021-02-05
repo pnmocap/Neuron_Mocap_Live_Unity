@@ -1,5 +1,5 @@
 /************************************************************************************
- Copyright: Copyright 2014 Beijing Noitom Technology Ltd. All Rights reserved.
+ Copyright: Copyright 2021 Beijing Noitom Technology Ltd. All Rights reserved.
  Pending Patents: PCT/CN2014/085659 PCT/CN2014/071006
 
  Licensed under the Perception Neuron SDK License Beta Version (the “License");
@@ -43,14 +43,14 @@ namespace Neuron
         public string										address { get; private set; }
 		public int											port { get; private set; }
 
-		public NeuronConnection.SocketType					socketType { get; private set; }
+		public NeuronEnums.SocketType					socketType { get; private set; }
 
 		public int											numOfAllActors { get { return allActors.Count; } }
 
 		public int											referenceCounter { get; private set; }
         public bool HasActorReference { get { return referenceCounter > 0; } }
 		
-		public NeuronSource( string address, int port, NeuronConnection.SocketType socketType)
+		public NeuronSource( string address, int port, NeuronEnums.SocketType socketType)
 		{
 			this.address = address;
 			this.port = port;
