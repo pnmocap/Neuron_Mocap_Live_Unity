@@ -15,7 +15,7 @@ Window x86_64
 ```
 Import the SDK package to unity
 
-Replace your MocapApi.dll file in Plugin folder from https://github.com/pnmocap/MocapApi/tree/main/bin/win32/x64
+Replace your Assets\Noitom\PerceptionNeuron\Plugins\x64\MocapApi.dll file from https://github.com/pnmocap/MocapApi/tree/main/bin/win32/x64
 
 Open Axis Studio software
 
