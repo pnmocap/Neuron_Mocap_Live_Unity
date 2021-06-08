@@ -103,9 +103,9 @@ namespace MocapApi
                 return rigidBody;
             }
         }
-        public EMCPError GetRigidBodyRotaion(ref float x, ref float y, ref float z, ref float w, ulong ulRigidBodyHandle)
+        public EMCPError GetRigidBodyRotation(ref float x, ref float y, ref float z, ref float w, ulong ulRigidBodyHandle)
         {
-            return ProcTable.GetRigidBodyRotaion(ref x, ref y, ref z, ref w, ulRigidBodyHandle);
+            return ProcTable.GetRigidBodyRotation(ref x, ref y, ref z, ref w, ulRigidBodyHandle);
         }
         public EMCPError GetRigidBodyPosition(ref float x, ref float y, ref float z, ulong ulRigidBodyHandle)
         {
@@ -119,13 +119,17 @@ namespace MocapApi
         {
             return ProcTable.GetRigidBodyId(ref id, ulRigidBodyHandle);
         }
+        public EMCPError GetRigidBodyJointTag(ref EMCPJointTag jointTag_, ulong ulRigidBodyHandle)
+        {
+            return ProcTable.GetRigidBodyJointTag(ref jointTag_, ulRigidBodyHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPRigidBody_ProcTable
         {
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetRigidBodyRotaion(ref float x, ref float y, ref float z, ref float w, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetRigidBodyRotation(ref float x, ref float y, ref float z, ref float w, ulong ulRigidBodyHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
-            internal _GetRigidBodyRotaion GetRigidBodyRotaion;
+            internal _GetRigidBodyRotation GetRigidBodyRotation;
             
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
             internal delegate EMCPError _GetRigidBodyPosition(ref float x, ref float y, ref float z, ulong ulRigidBodyHandle);
@@ -141,6 +145,11 @@ namespace MocapApi
             internal delegate EMCPError _GetRigidBodyId(ref int id, ulong ulRigidBodyHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetRigidBodyId GetRigidBodyId;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetRigidBodyJointTag(ref EMCPJointTag jointTag_, ulong ulRigidBodyHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetRigidBodyJointTag GetRigidBodyJointTag;
             
         }
         private MCPRigidBody_ProcTable ProcTable;
@@ -178,6 +187,18 @@ namespace MocapApi
         {
             return ProcTable.GetSensorModuleAcceleratedVelocity(ref x, ref y, ref z, sensorModuleHandle);
         }
+        public EMCPError GetSensorModuleId(ref uint id, ulong sensorModuleHandle)
+        {
+            return ProcTable.GetSensorModuleId(ref id, sensorModuleHandle);
+        }
+        public EMCPError GetSensorModuleCompassValue(ref float x, ref float y, ref float z, ulong sensorModuleHandle)
+        {
+            return ProcTable.GetSensorModuleCompassValue(ref x, ref y, ref z, sensorModuleHandle);
+        }
+        public EMCPError GetSensorModuleTemperature(ref float temperature, ulong sensorModuleHandle)
+        {
+            return ProcTable.GetSensorModuleTemperature(ref temperature, sensorModuleHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPSensorModule_ProcTable
         {
@@ -195,6 +216,21 @@ namespace MocapApi
             internal delegate EMCPError _GetSensorModuleAcceleratedVelocity(ref float x, ref float y, ref float z, ulong sensorModuleHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetSensorModuleAcceleratedVelocity GetSensorModuleAcceleratedVelocity;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetSensorModuleId(ref uint id, ulong sensorModuleHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetSensorModuleId GetSensorModuleId;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetSensorModuleCompassValue(ref float x, ref float y, ref float z, ulong sensorModuleHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetSensorModuleCompassValue GetSensorModuleCompassValue;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetSensorModuleTemperature(ref float temperature, ulong sensorModuleHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetSensorModuleTemperature GetSensorModuleTemperature;
             
         }
         private MCPSensorModule_ProcTable ProcTable;
@@ -288,13 +324,13 @@ namespace MocapApi
         {
             return ProcTable.GetJointName(ref ppStr, ulJointHandle);
         }
-        public EMCPError GetJointLocalRotaion(ref float x, ref float y, ref float z, ref float w, ulong ulJointHandle)
+        public EMCPError GetJointLocalRotation(ref float x, ref float y, ref float z, ref float w, ulong ulJointHandle)
         {
-            return ProcTable.GetJointLocalRotaion(ref x, ref y, ref z, ref w, ulJointHandle);
+            return ProcTable.GetJointLocalRotation(ref x, ref y, ref z, ref w, ulJointHandle);
         }
-        public EMCPError GetJointLocalRotaionByEuler(ref float x, ref float y, ref float z, ulong ulJointHandle)
+        public EMCPError GetJointLocalRotationByEuler(ref float x, ref float y, ref float z, ulong ulJointHandle)
         {
-            return ProcTable.GetJointLocalRotaionByEuler(ref x, ref y, ref z, ulJointHandle);
+            return ProcTable.GetJointLocalRotationByEuler(ref x, ref y, ref z, ulJointHandle);
         }
         public EMCPError GetJointLocalPosition(ref float x, ref float y, ref float z, ulong ulJointHandle)
         {
@@ -351,14 +387,14 @@ namespace MocapApi
             internal _GetJointName GetJointName;
             
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetJointLocalRotaion(ref float x, ref float y, ref float z, ref float w, ulong ulJointHandle);
+            internal delegate EMCPError _GetJointLocalRotation(ref float x, ref float y, ref float z, ref float w, ulong ulJointHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
-            internal _GetJointLocalRotaion GetJointLocalRotaion;
+            internal _GetJointLocalRotation GetJointLocalRotation;
             
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetJointLocalRotaionByEuler(ref float x, ref float y, ref float z, ulong ulJointHandle);
+            internal delegate EMCPError _GetJointLocalRotationByEuler(ref float x, ref float y, ref float z, ulong ulJointHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
-            internal _GetJointLocalRotaionByEuler GetJointLocalRotaionByEuler;
+            internal _GetJointLocalRotationByEuler GetJointLocalRotationByEuler;
             
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
             internal delegate EMCPError _GetJointLocalPosition(ref float x, ref float y, ref float z, ulong ulJointHandle);
@@ -564,12 +600,18 @@ namespace MocapApi
     {
         public EMCPError error;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MCPEvent_SensorModuleData_t
+    {
+        public ulong _sensorModuleHandle;
+    }
     [StructLayout(LayoutKind.Explicit)]
     public struct MCPEventData_t
     {
         [FieldOffset(0)] public MCPEvent_Reserved_t reserved;
         [FieldOffset(0)] public MCPEvent_MotionData_t motionData;
         [FieldOffset(0)] public MCPEvent_SystemError_t systemError;
+        [FieldOffset(0)] public MCPEvent_SensorModuleData_t sensorModuleData;
     };
     public enum EMCPEventType
     {
@@ -577,6 +619,7 @@ namespace MocapApi
         MCPEvent_AvatarUpdated=256,
         MCPEvent_RigidBodyUpdated=512,
         MCPEvent_Error=768,
+        MCPEvent_SensorModulesUpdated=1024,
     };
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_t
@@ -944,6 +987,10 @@ namespace MocapApi
         {
             return ProcTable.PollApplicationNextEvent(pEvent, ref punSizeOfEvent, ulApplicationHandle);
         }
+        public EMCPError GetApplicationSensorModules(ref ulong pSensorModuleHandle, ref uint punSensorModuleHandle, ulong ulApplicationHandle)
+        {
+            return ProcTable.GetApplicationSensorModules(ref pSensorModuleHandle, ref punSensorModuleHandle, ulApplicationHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPApplication_ProcTable
         {
@@ -1006,6 +1053,11 @@ namespace MocapApi
             internal delegate EMCPError _PollApplicationNextEvent([In, Out]MCPEvent_t[] pEvent, ref uint punSizeOfEvent, ulong ulApplicationHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _PollApplicationNextEvent PollApplicationNextEvent;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetApplicationSensorModules(ref ulong pSensorModuleHandle, ref uint punSensorModuleHandle, ulong ulApplicationHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetApplicationSensorModules GetApplicationSensorModules;
             
         }
         private MCPApplication_ProcTable ProcTable;

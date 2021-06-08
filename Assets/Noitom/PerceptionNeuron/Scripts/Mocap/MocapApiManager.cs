@@ -192,7 +192,7 @@ public static class MocapApiManager
 
                 float qx = 0f, qy = 0f, qz = 0f, qw = 1f;
                 float px = 0f, py = 0f, pz = 0f;
-                IMCPRigidBody.RigidBody.GetRigidBodyRotaion(ref qx, ref qy, ref qz, ref qw, avatarRigidbodys[i]);
+                IMCPRigidBody.RigidBody.GetRigidBodyRotation(ref qx, ref qy, ref qz, ref qw, avatarRigidbodys[i]);
                 IMCPRigidBody.RigidBody.GetRigidBodyPosition(ref px, ref py, ref pz, avatarRigidbodys[i]);
                 Quaternion q = new Quaternion(qx, qy, qz, qw);
                 Vector3 p = new Vector3(px, py, pz);
@@ -244,7 +244,7 @@ public static class MocapApiManager
         EMCPError errCode = IMCPJoint.Joint.GetJointLocalPosition(ref v.x, ref v.y, ref v.z, parentJointHandle);
 
         Quaternion q = new Quaternion();
-        IMCPJoint.Joint.GetJointLocalRotaion(ref q.x, ref q.y, ref q.z, ref q.w, parentJointHandle);
+        IMCPJoint.Joint.GetJointLocalRotation(ref q.x, ref q.y, ref q.z, ref q.w, parentJointHandle);
 
         // int boneId = BoneNameToBoneId(jointName);
         EMCPJointTag pJointTag = EMCPJointTag.JointTag_Invalid;
