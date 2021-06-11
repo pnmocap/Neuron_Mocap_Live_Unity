@@ -115,16 +115,19 @@ namespace Neuron
 		}
 		
 		// set position for bone
-		static void SetPosition( Transform[] transforms, NeuronBones bone, Vector3 pos )
+		static void SetPosition( Transform[] transforms, NeuronBones bone, Vector3 pos, bool withOriginlPosition = false )
 		{
 			Transform t = transforms[(int)bone];
 			if( t != null )
 			{
-                // calculate position when we have scale
-                Vector3 lossyScale = t.parent == null ? Vector3.one : t.parent.lossyScale;
+                if (!withOriginlPosition)
+                {
+                    // calculate position when we have scale
+                    Vector3 lossyScale = t.parent == null ? Vector3.one : t.parent.lossyScale;
 
-                pos.Scale( new Vector3( 1.0f / lossyScale.x, 1.0f / lossyScale.y, 1.0f / lossyScale.z ) );
-			
+                    pos.Scale(new Vector3(1.0f / lossyScale.x, 1.0f / lossyScale.y, 1.0f / lossyScale.z));
+                }
+
 				if( !float.IsNaN( pos.x ) && !float.IsNaN( pos.y ) && !float.IsNaN( pos.z ) )
 				{
 					t.localPosition = pos;
@@ -204,7 +207,7 @@ namespace Neuron
                     }
                     else
                     {
-                        SetPosition(transforms, (NeuronBones)i, orignalPositions[i]);
+                        SetPosition(transforms, (NeuronBones)i, orignalPositions[i], true);
                     }
                     //  SetPosition( transforms, (NeuronBones)i, actor.GetReceivedPosition( (NeuronBones)i ) + bonePositionOffsets[i] );
                     //	SetRotation( transforms, (NeuronBones)i, actor.GetReceivedRotation( (NeuronBones)i ) + boneRotationOffsets[i] );
