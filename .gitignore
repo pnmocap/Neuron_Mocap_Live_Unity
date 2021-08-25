@@ -1,7 +1,6 @@
 /.vs
 /Library
 /Temp
-/.gitignore
 /github2.csproj
 /github2.Editor.csproj
 /*.sln
