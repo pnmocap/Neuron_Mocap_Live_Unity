@@ -45,6 +45,9 @@ public class NeuronAnimatorInstance : NeuronInstance
     Vector3[] orignalPositions = new Vector3[(int)HumanBodyBones.LastBone];
 
 
+    [HideInInspector]
+    public bool[] disableBoneMovement = new bool[(int)HumanBodyBones.LastBone];
+
     bool inited = false;
     new void OnEnable()
 	{
@@ -104,6 +107,8 @@ public class NeuronAnimatorInstance : NeuronInstance
 	// set position for bone in animator
 	void SetPosition( Animator animator, HumanBodyBones bone, Vector3 pos )
 	{
+        if(!this.disableBoneMovement[(int)bone])
+            pos = this.orignalPositions[(int)bone];
 		Transform t = animator.GetBoneTransform( bone );
 		if( t != null )
 		{

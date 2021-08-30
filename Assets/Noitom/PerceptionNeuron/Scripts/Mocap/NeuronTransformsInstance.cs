@@ -51,6 +51,9 @@ namespace Neuron
         Quaternion[] orignalParentRot = new Quaternion[(int)NeuronBones.NumOfBones];
         Vector3[] orignalPositions = new Vector3[(int)NeuronBones.NumOfBones];
 
+        [HideInInspector]
+        public bool[] disableBoneMovement = new bool[(int)NeuronBones.NumOfBones];
+
 
         bool inited = false;
 		new void OnEnable()
@@ -155,7 +158,7 @@ namespace Neuron
             if (!actor.HsReceivedData)
                 return;
             // apply Hips position
-            if (enableHipMove)
+            if (enableHipMove &&  (!disableBoneMovement[(int)NeuronBones.Hips]))
                 SetPosition(transforms, NeuronBones.Hips, actor.GetReceivedPosition(NeuronBones.Hips, orignalPositions[(int)NeuronBones.Hips]));
             else
             {
@@ -192,7 +195,8 @@ namespace Neuron
 
                     // p   
                     bool enableNodeMove = actor.GetHasPosition((NeuronBones)i);
-                    if(!enableFingerMove)
+                    enableNodeMove &= (!disableBoneMovement[i]);
+                    if (!enableFingerMove)
                     {
                         if (i >= (int)NeuronBones.RightHand && i <= (int)NeuronBones.RightHandPinky3)
                             enableNodeMove = false;

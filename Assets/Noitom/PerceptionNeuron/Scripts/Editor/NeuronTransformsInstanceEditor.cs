@@ -13,6 +13,8 @@ public class NeuronTransformsInstanceEditor : Editor
     SerializedProperty tcpPortField;
     SerializedProperty udpPortField;
     SerializedProperty physicalReferenceOverrideField;
+
+    SerializedProperty disableBoneMovementField;
     //void OnEnable()
     //{
     //    // Setup the SerializedProperties.
@@ -30,6 +32,7 @@ public class NeuronTransformsInstanceEditor : Editor
             tcpPortField = serializedObject.FindProperty("portTcp");
             udpPortField = serializedObject.FindProperty("portUdp");
             physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
+
         }
 
         if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
@@ -78,6 +81,8 @@ public class NeuronTransformsInstanceEditor : Editor
         serializedObject.Update();
         if(transformsField == null)
             transformsField = serializedObject.FindProperty("transforms");
+        if(disableBoneMovementField == null)
+            disableBoneMovementField = serializedObject.FindProperty("disableBoneMovement");
         EditorGUILayout.PropertyField(serializedObject.FindProperty("transforms"), new GUIContent("transforms"), true);
 
         EditorGUI.indentLevel += 1;
@@ -90,6 +95,16 @@ public class NeuronTransformsInstanceEditor : Editor
                     EditorGUILayout.PropertyField(transformsField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBonesV2)i).ToString()));
                 else
                     EditorGUILayout.PropertyField(transformsField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBones)i).ToString()));
+            }
+
+            GUILayout.Space(10);
+            GUILayout.Label("disable bone movement: ");
+            for (int i = 0; i < disableBoneMovementField.arraySize; i++)
+            {
+                if ((script.skeletonType == (int)(NeuronEnums.SkeletonType.PerceptionNeuronStudio)) && (i == (int)Neuron.NeuronBones.Spine3 || i == (int)Neuron.NeuronBones.Neck))
+                    EditorGUILayout.PropertyField(disableBoneMovementField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBonesV2)i).ToString()));
+                else
+                    EditorGUILayout.PropertyField(disableBoneMovementField.GetArrayElementAtIndex(i), new GUIContent(((Neuron.NeuronBones)i).ToString()));
             }
         }
         EditorGUI.indentLevel -= 1;
