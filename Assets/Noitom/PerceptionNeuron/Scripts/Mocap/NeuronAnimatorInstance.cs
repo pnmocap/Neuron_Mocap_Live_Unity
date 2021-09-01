@@ -107,7 +107,7 @@ public class NeuronAnimatorInstance : NeuronInstance
 	// set position for bone in animator
 	void SetPosition( Animator animator, HumanBodyBones bone, Vector3 pos )
 	{
-        if(!this.disableBoneMovement[(int)bone])
+        if(this.disableBoneMovement[(int)bone])
             pos = this.orignalPositions[(int)bone];
 		Transform t = animator.GetBoneTransform( bone );
 		if( t != null )
