@@ -10,6 +10,15 @@ using System.Runtime.InteropServices;
 public static class MocapApiManager
 {
 
+    static bool isConnectFailed = false;
+    public static bool IsConnectFailed
+    {
+        get
+        {
+            return IsConnectFailed;
+        }
+    }
+
     static List<NeuronSource> AllNeuronSources = new List < NeuronSource >();
     static Dictionary<string, ulong> connectionApplications = new Dictionary<string, ulong>();
 
@@ -51,9 +60,10 @@ public static class MocapApiManager
         return address +"__" + port + "__" + socketType;
     }
 
+
     static ulong CreateApplicationConnection(string address, int port, NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
-
+        isConnectFailed = false;
         ulong applicationHandle = 0;
         EMCPError error = IMCPApplication.Application.CreateApplication(ref applicationHandle);
 
@@ -161,13 +171,23 @@ public static class MocapApiManager
                         for (int k = 0; k < AllNeuronSources.Count; k++)
                         {
                             var connectionSrc = AllNeuronSources[k];
-                            if(connectionSrc.HasActorReference && connectionSrc.applicationHandle == appHandlerId)
+                            if (connectionSrc.HasActorReference && connectionSrc.applicationHandle == appHandlerId)
                             {
                                 // update the src
                                 HandleAvatarUpdated(ev[i].eventData.motionData.avatarHandle, connectionSrc);
                             }
                         }
                     }
+                    else if(ev[i].eventType == EMCPEventType.MCPEvent_Error)
+                    {
+                        isConnectFailed = true;
+                        Debug.LogErrorFormat("Failed to connect to appliction, MCPEvent_Error");
+                    }
+                    else
+                    {
+                        Debug.Log("On event " + ev[i].eventType);
+                    }
+                      
                 }
 
             }
@@ -302,6 +322,9 @@ public static class MocapApiManager
 
 
     public static int numOfSources { get { return AllNeuronSources.Count; } }
+
+
+
     static NeuronSource RequareNeuronSourceInConnection(string address, int port, NeuronEnums.SocketType socketType)
     {
         NeuronSource source = FindNeuronSourceInConnection(address, port, socketType);
