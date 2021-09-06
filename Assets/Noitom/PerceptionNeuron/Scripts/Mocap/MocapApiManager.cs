@@ -24,7 +24,10 @@ public static class MocapApiManager
         else
         {
             applicationHandle = CreateApplicationConnection(address, port, socketType, skeletonType);
-            connectionApplications.Add(connStrId, applicationHandle);
+            if (applicationHandle > 0)
+                connectionApplications.Add(connStrId, applicationHandle);
+            else
+                return null;
         }
 
         NeuronSource neuronSrc = RequareNeuronSourceInConnection(address, port, socketType);
@@ -52,8 +55,9 @@ public static class MocapApiManager
     {
 
         ulong applicationHandle = 0;
-        IMCPApplication.Application.CreateApplication(ref applicationHandle);
+        EMCPError error = IMCPApplication.Application.CreateApplication(ref applicationHandle);
 
+        if(error == EMCPError.Error_None)
         {
             ulong settings = 0;
             IMCPSettings.Settings.CreateSettings(ref settings);
@@ -70,8 +74,15 @@ public static class MocapApiManager
             IMCPApplication.Application.SetApplicationSettings(settings, applicationHandle);
             IMCPSettings.Settings.DestroySettings(settings);
             IMCPApplication.Application.OpenApplication(applicationHandle);
+
+
+        }
+        else
+        {
+            Debug.LogErrorFormat("Error on connect to appliction, error code: {0}", error);
         }
 
+        if(applicationHandle > 0)
         {
             ulong renderSettings = 0;
             /*
@@ -87,8 +98,13 @@ public static class MocapApiManager
             IMCPRenderSettings.RenderSettings.GetPreDefRenderSettings(EMCPPreDefinedRenderSettings.PreDefinedRenderSettings_Unity3D, ref renderSettings);
             IMCPApplication.Application.SetApplicationRenderSettings(renderSettings, applicationHandle);
 
-            Debug.LogFormat("Connect to {0} {1} {2}", address, port, socketType);
+            Debug.LogFormat("Connect to {0} {1} {2} success, handlerId: {3}", address, port, socketType, applicationHandle);
         }
+        else
+        {
+            Debug.LogErrorFormat("Failed to connect to appliction");
+        }
+
         return applicationHandle;
 
     }
