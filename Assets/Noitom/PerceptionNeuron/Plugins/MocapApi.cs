@@ -167,7 +167,7 @@ namespace MocapApi
 
     public class IMCPTracker
     {
-        static public IMCPTracker RigidBody
+        static public IMCPTracker MCPTracker
         {
             get
             {
@@ -714,6 +714,11 @@ namespace MocapApi
     {
         public ulong _sensorModuleHandle;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MCPEvent_TrackerData_t
+    {
+        public ulong _trackerHandle;
+    }
     [StructLayout(LayoutKind.Explicit)]
     public struct MCPEventData_t
     {
@@ -721,6 +726,7 @@ namespace MocapApi
         [FieldOffset(0)] public MCPEvent_MotionData_t motionData;
         [FieldOffset(0)] public MCPEvent_SystemError_t systemError;
         [FieldOffset(0)] public MCPEvent_SensorModuleData_t sensorModuleData;
+        [FieldOffset(0)] public MCPEvent_TrackerData_t trackerData;
     };
     public enum EMCPEventType
     {
@@ -729,6 +735,7 @@ namespace MocapApi
         MCPEvent_RigidBodyUpdated=512,
         MCPEvent_Error=768,
         MCPEvent_SensorModulesUpdated=1024,
+        MCPEvent_TrackerUpdated = 0x00000500,
     };
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_t

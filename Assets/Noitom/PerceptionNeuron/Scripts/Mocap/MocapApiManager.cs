@@ -178,6 +178,10 @@ public static class MocapApiManager
                             }
                         }
                     }
+                    else if (ev[i].eventType == EMCPEventType.MCPEvent_TrackerUpdated)
+                    {
+                        HandleTrackerUpdateEvent(ev[i].eventData.trackerData._trackerHandle);
+                    }
                     else if(ev[i].eventType == EMCPEventType.MCPEvent_Error)
                     {
                         isConnectFailed = true;
@@ -256,6 +260,55 @@ public static class MocapApiManager
         }
         //Debug.Log(xxx);
     }
+
+    static bool HandleTrackerUpdateEvent(ulong TrackerHandle)
+    {
+        IMCPTracker TrackerMgr = IMCPTracker.MCPTracker;
+
+        int TrackerCount = 0;
+        var error = TrackerMgr.GetDeviceCount(ref TrackerCount, TrackerHandle);
+        if (error != EMCPError.Error_None)
+        {
+            return false;
+        }
+
+        for (int Idx = 0; Idx < TrackerCount; ++Idx)
+        {
+            string name = "";
+            TrackerMgr.GetDeviceName(Idx, ref name, TrackerHandle);
+
+
+            float qx = 0f, qy = 0f, qz = 0f, qw = 1f;
+            float px = 0f, py = 0f, pz = 0f;
+            TrackerMgr.GetTrackerRotation(ref qx, ref qy, ref qz, ref qw, name, TrackerHandle);
+            TrackerMgr.GetTrackerPosition(ref px, ref py, ref pz, name, TrackerHandle);
+            Quaternion q = new Quaternion(qx, qy, qz, qw);
+            Vector3 p = new Vector3(px, py, pz);
+
+            //Debug.Log(rigidbodyId  + " " + p+ " " + q);
+            if (NeuronActor.trackerLocalPositions.ContainsKey(name))
+            {
+                NeuronActor.trackerLocalPositions[name] = p;
+            }
+            else
+            {
+                Debug.Log("Add rigidbody, id: " + name);
+                NeuronActor.trackerLocalPositions.Add(name, p);
+            }
+
+            if (NeuronActor.trackerLocalRotations.ContainsKey(name))
+            {
+                NeuronActor.trackerLocalRotations[name] = q;
+            }
+            else
+            {
+                NeuronActor.trackerLocalRotations.Add(name, q);
+            }
+
+        }
+        return true;
+    }
+
 
     //static ulong[] childrenHandlerIdBufs = new ulong[64];
     static void RecurrenceParseJointPQ(ulong parentJointHandle, NeuronActor neuronSource, int levelCount)

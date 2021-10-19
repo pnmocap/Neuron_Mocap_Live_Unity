@@ -66,6 +66,9 @@ namespace Neuron
         public static Dictionary<int, Vector3> rigidbodyLocalPositions = new Dictionary<int, Vector3>();
         public static Dictionary<int, Quaternion> rigidbodyLocalRotations = new Dictionary<int, Quaternion>();
 
+        public static Dictionary<string, Vector3> trackerLocalPositions = new Dictionary<string, Vector3>();
+        public static Dictionary<string, Quaternion> trackerLocalRotations = new Dictionary<string, Quaternion>();
+
 
         public Vector3[] SourceLocalPositions
         {
