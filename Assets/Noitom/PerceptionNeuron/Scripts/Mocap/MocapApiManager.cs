@@ -263,7 +263,7 @@ public static class MocapApiManager
 
     static bool HandleTrackerUpdateEvent(ulong TrackerHandle)
     {
-        IMCPTracker TrackerMgr = IMCPTracker.MCPTracker;
+        IMCPTracker TrackerMgr = IMCPTracker.Tracker;
 
         int TrackerCount = 0;
         var error = TrackerMgr.GetDeviceCount(ref TrackerCount, TrackerHandle);

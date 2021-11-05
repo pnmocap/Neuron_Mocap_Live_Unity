@@ -162,115 +162,106 @@ namespace MocapApi
             ProcTable = (MCPRigidBody_ProcTable)Marshal.PtrToStructure(pp, typeof(MCPRigidBody_ProcTable));
         }
     };
-
-
-
     public class IMCPTracker
     {
-        static public IMCPTracker MCPTracker
+        static public IMCPTracker Tracker
         {
             get
             {
-                if (null == mcpTracker)
+                if (null == tracker)
                 {
-                    mcpTracker = new IMCPTracker();
+                    tracker = new IMCPTracker();
                 }
-                return mcpTracker;
+                return tracker;
             }
         }
-
-        public  EMCPError ReqConfigSyn(ulong ulTrackerHandle)
+        public EMCPError ReqConfigSyn(ulong ulTrackerHandle)
         {
             return ProcTable.ReqConfigSyn(ulTrackerHandle);
         }
-
-         public  EMCPError SendMessageData(string message, int len, long ulTrackerHandle)
+        public EMCPError SendMessageData(string message, int len, ulong ulTrackerHandle)
         {
             return ProcTable.SendMessageData(message, len, ulTrackerHandle);
         }
-
-        public  EMCPError GetTrackerRotation(ref float x, ref float y, ref float z, ref float w, string deviceName, ulong ulRigidBodyHandle)
+        public EMCPError GetTrackerRotation(ref float x, ref float y, ref float z, ref float w, string deviceName, ulong ulTrackerHandle)
         {
-            return ProcTable.GetTrackerRotation(ref x, ref y, ref z, ref w, deviceName, ulRigidBodyHandle);
+            return ProcTable.GetTrackerRotation(ref x, ref y, ref z, ref w, deviceName, ulTrackerHandle);
         }
-
-        public  EMCPError GetTrackerPosition(ref float x, ref float y, ref float z, string deviceName, ulong ulRigidBodyHandle)
+        public EMCPError GetTrackerPosition(ref float x, ref float y, ref float z, string deviceName, ulong ulTrackerHandle)
         {
-            return ProcTable.GetTrackerPosition(ref x, ref y, ref z, deviceName, ulRigidBodyHandle);
+            return ProcTable.GetTrackerPosition(ref x, ref y, ref z, deviceName, ulTrackerHandle);
         }
-
-        public  EMCPError GetTrackerEulerAng(ref float x, ref float y, ref float z, string deviceName, ulong ulRigidBodyHandle)
+        public EMCPError GetTrackerEulerAng(ref float x, ref float y, ref float z, string deviceName, ulong ulTrackerHandle)
         {
-            return ProcTable.GetTrackerEulerAng(ref x, ref y, ref z, deviceName, ulRigidBodyHandle);
+            return ProcTable.GetTrackerEulerAng(ref x, ref y, ref z, deviceName, ulTrackerHandle);
         }
-
-        public  EMCPError GetDeviceCount(ref int devCount, ulong ulRigidBodyHandle)
+        public EMCPError GetDeviceCount(ref int devCount, ulong ulTrackerHandle)
         {
-            return ProcTable.GetDeviceCount(ref devCount, ulRigidBodyHandle);
+            return ProcTable.GetDeviceCount(ref devCount, ulTrackerHandle);
         }
-
-        public EMCPError GetDeviceName(int serialNum, ref string name, ulong ulRigidBodyHandle)
+        public EMCPError GetDeviceName(int serialNum, ref string name, ulong ulTrackerHandle)
         {
-            return ProcTable.GetDeviceName(serialNum, ref name , ulRigidBodyHandle);
+            IntPtr name_ = IntPtr.Zero;
+            var r = ProcTable.GetDeviceName(serialNum, ref name_, ulTrackerHandle);
+            if (r == EMCPError.Error_None)
+            {
+                name = Marshal.PtrToStringAnsi(name_);
+            }
+            return r;
         }
-
-
+        public EMCPError GetDeviceName(int serialNum, ref IntPtr name, ulong ulTrackerHandle)
+        {
+            return ProcTable.GetDeviceName(serialNum, ref name, ulTrackerHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
-        private struct IMCPTracker_ProcTable
+        private struct MCPTracker_ProcTable
         {
-
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
             internal delegate EMCPError _ReqConfigSyn(ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _ReqConfigSyn ReqConfigSyn;
-
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _SendMessageData(string message, int len, long ulTrackerHandle);
+            internal delegate EMCPError _SendMessageData(string message, int len, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _SendMessageData SendMessageData;
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetTrackerRotation(ref float x, ref float y, ref float z, ref float w, string deviceName, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetTrackerRotation(ref float x, ref float y, ref float z, ref float w, string deviceName, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetTrackerRotation GetTrackerRotation;
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetTrackerPosition(ref float x, ref float y, ref float z, string deviceName, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetTrackerPosition(ref float x, ref float y, ref float z, string deviceName, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetTrackerPosition GetTrackerPosition;
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetTrackerEulerAng(ref float x, ref float y, ref float z, string deviceName, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetTrackerEulerAng(ref float x, ref float y, ref float z, string deviceName, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetTrackerEulerAng GetTrackerEulerAng;
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetDeviceCount(ref int devCount, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetDeviceCount(ref int devCount, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetDeviceCount GetDeviceCount;
-
+            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _GetDeviceName(int serialNum, ref string name, ulong ulRigidBodyHandle);
+            internal delegate EMCPError _GetDeviceName(int serialNum, ref IntPtr name, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetDeviceName GetDeviceName;
-
+            
         }
-        private IMCPTracker_ProcTable ProcTable;
-        private static IMCPTracker mcpTracker;
+        private MCPTracker_ProcTable ProcTable;
+        private static IMCPTracker tracker;
         private const string IMCPTracker_Version = "IMCPTracker_001";
         private IMCPTracker()
         {
             IntPtr pp = IntPtr.Zero;
             var er = Interop.MCPGetGenericInterface(Interop.ProcTable_Prefix + IMCPTracker_Version, ref pp);
-            ProcTable = (IMCPTracker_ProcTable)Marshal.PtrToStructure(pp, typeof(IMCPTracker_ProcTable));
+            ProcTable = (MCPTracker_ProcTable)Marshal.PtrToStructure(pp, typeof(MCPTracker_ProcTable));
         }
     };
-
-
-
-
-
     public class IMCPSensorModule
     {
         static public IMCPSensorModule SensorModule
@@ -735,7 +726,7 @@ namespace MocapApi
         MCPEvent_RigidBodyUpdated=512,
         MCPEvent_Error=768,
         MCPEvent_SensorModulesUpdated=1024,
-        MCPEvent_TrackerUpdated = 0x00000500,
+        MCPEvent_TrackerUpdated=1280,
     };
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_t
@@ -1099,6 +1090,10 @@ namespace MocapApi
         {
             return ProcTable.GetApplicationAvatars(ref pAvatarHandle, ref punAvatarHandle, ulApplicationHandle);
         }
+        public EMCPError GetApplicationTrackers(ref ulong pTrackerHandle, ref uint punTrackerHandle, ulong ulApplicationHandle)
+        {
+            return ProcTable.GetApplicationTrackers(ref pTrackerHandle, ref punTrackerHandle, ulApplicationHandle);
+        }
         public EMCPError PollApplicationNextEvent([In, Out]MCPEvent_t[] pEvent, ref uint punSizeOfEvent, ulong ulApplicationHandle)
         {
             return ProcTable.PollApplicationNextEvent(pEvent, ref punSizeOfEvent, ulApplicationHandle);
@@ -1164,6 +1159,11 @@ namespace MocapApi
             internal delegate EMCPError _GetApplicationAvatars(ref ulong pAvatarHandle, ref uint punAvatarHandle, ulong ulApplicationHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetApplicationAvatars GetApplicationAvatars;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _GetApplicationTrackers(ref ulong pTrackerHandle, ref uint punTrackerHandle, ulong ulApplicationHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _GetApplicationTrackers GetApplicationTrackers;
             
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
             internal delegate EMCPError _PollApplicationNextEvent([In, Out]MCPEvent_t[] pEvent, ref uint punSizeOfEvent, ulong ulApplicationHandle);
