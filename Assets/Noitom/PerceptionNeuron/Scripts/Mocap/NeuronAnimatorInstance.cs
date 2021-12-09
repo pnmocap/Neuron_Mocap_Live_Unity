@@ -105,7 +105,7 @@ public class NeuronAnimatorInstance : NeuronInstance
 	}
 	
 	// set position for bone in animator
-	void SetPosition( Animator animator, HumanBodyBones bone, Vector3 pos )
+	void SetPosition(bool hasPosData, Animator animator, HumanBodyBones bone, Vector3 pos)
 	{
         if(this.disableBoneMovement[(int)bone])
             pos = this.orignalPositions[(int)bone];
@@ -114,11 +114,16 @@ public class NeuronAnimatorInstance : NeuronInstance
 		{
 			if( !float.IsNaN( pos.x ) && !float.IsNaN( pos.y ) && !float.IsNaN( pos.z ) )
 			{
-                //	t.localPosition = pos;
-
                 Vector3 srcP = pos;
-                Vector3 finalP = Quaternion.Inverse(orignalParentRot[(int)bone]) * srcP;
-                t.localPosition = finalP;
+                if (!hasPosData)
+                {
+                    t.localPosition = srcP;
+                }
+                else
+                {
+                    Vector3 finalP = Quaternion.Inverse(orignalParentRot[(int)bone]) * srcP;
+                    t.localPosition = finalP;
+                }
             }
 		}
 	}
@@ -156,7 +161,7 @@ public class NeuronAnimatorInstance : NeuronInstance
             return;
         // apply Hips position
         if (enableHipMove) {
-			SetPosition (animator, HumanBodyBones.Hips, actor.GetReceivedPosition (NeuronBones.Hips, this.orignalPositions[(int)HumanBodyBones.Hips]) + positionOffsets [(int)HumanBodyBones.Hips]);
+			SetPosition (actor.GetHasPosition(NeuronBones.Hips), animator, HumanBodyBones.Hips, actor.GetReceivedPosition (NeuronBones.Hips, this.orignalPositions[(int)HumanBodyBones.Hips]) + positionOffsets [(int)HumanBodyBones.Hips]);
 		}
         SetRotation(animator, HumanBodyBones.Hips, actor.GetReceivedRotation(NeuronBones.Hips));
 
@@ -164,95 +169,95 @@ public class NeuronAnimatorInstance : NeuronInstance
         //if( actor.AvatarWithDisplacement )
         {
 			// legs
-			SetPosition( animator, HumanBodyBones.RightUpperLeg,			  actor.GetReceivedPosition( NeuronBones.RightUpLeg ,this.orignalPositions[(int)HumanBodyBones.RightUpperLeg] ) + positionOffsets[(int)HumanBodyBones.RightUpperLeg] );
-			SetPosition( animator, HumanBodyBones.RightLowerLeg, 			    actor.GetReceivedPosition( NeuronBones.RightLeg, this.orignalPositions[(int)HumanBodyBones.RightLowerLeg]) );
-			SetPosition( animator, HumanBodyBones.RightFoot    , 			   actor.GetReceivedPosition( NeuronBones.RightFoot, this.orignalPositions[(int)HumanBodyBones.RightFoot    ]) );
-			SetPosition( animator, HumanBodyBones.LeftUpperLeg ,			   actor.GetReceivedPosition( NeuronBones.LeftUpLeg, this.orignalPositions[(int)HumanBodyBones.LeftUpperLeg ]) + positionOffsets[(int)HumanBodyBones.LeftUpperLeg] );
-			SetPosition( animator, HumanBodyBones.LeftLowerLeg ,				 actor.GetReceivedPosition( NeuronBones.LeftLeg, this.orignalPositions[(int)HumanBodyBones.LeftLowerLeg ]) );
-			SetPosition( animator, HumanBodyBones.LeftFoot     ,			    actor.GetReceivedPosition( NeuronBones.LeftFoot, this.orignalPositions[(int)HumanBodyBones.LeftFoot     ]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.RightUpLeg), animator, HumanBodyBones.RightUpperLeg, actor.GetReceivedPosition(NeuronBones.RightUpLeg, this.orignalPositions[(int)HumanBodyBones.RightUpperLeg]) + positionOffsets[(int)HumanBodyBones.RightUpperLeg]);
+            SetPosition(actor.GetHasPosition(NeuronBones.RightLeg  ), animator, HumanBodyBones.RightLowerLeg, actor.GetReceivedPosition(NeuronBones.RightLeg, this.orignalPositions[(int)HumanBodyBones.RightLowerLeg]));
+            SetPosition(actor.GetHasPosition(NeuronBones.RightFoot ), animator, HumanBodyBones.RightFoot, actor.GetReceivedPosition(NeuronBones.RightFoot, this.orignalPositions[(int)HumanBodyBones.RightFoot]));
+            SetPosition(actor.GetHasPosition(NeuronBones.LeftUpLeg ), animator, HumanBodyBones.LeftUpperLeg, actor.GetReceivedPosition(NeuronBones.LeftUpLeg, this.orignalPositions[(int)HumanBodyBones.LeftUpperLeg]) + positionOffsets[(int)HumanBodyBones.LeftUpperLeg]);
+            SetPosition(actor.GetHasPosition(NeuronBones.LeftLeg), animator, HumanBodyBones.LeftLowerLeg, actor.GetReceivedPosition(NeuronBones.LeftLeg, this.orignalPositions[(int)HumanBodyBones.LeftLowerLeg]));
+            SetPosition(actor.GetHasPosition(NeuronBones.LeftFoot  ),animator, HumanBodyBones.LeftFoot     ,			  actor.GetReceivedPosition( NeuronBones.LeftFoot, this.orignalPositions[(int)HumanBodyBones.LeftFoot     ]) );
 			
 			// spine
-			SetPosition( animator, HumanBodyBones.Spine,					actor.GetReceivedPosition( NeuronBones.Spine, this.orignalPositions[(int)HumanBodyBones.Spine]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.Spine), animator, HumanBodyBones.Spine,					actor.GetReceivedPosition( NeuronBones.Spine, this.orignalPositions[(int)HumanBodyBones.Spine]) );
             if ((skeletonType == NeuronEnums.SkeletonType.PerceptionNeuronStudio))
             {
-                SetPosition(animator, HumanBodyBones.Chest,
+                SetPosition(actor.GetHasPosition(NeuronBones.Spine1), animator, HumanBodyBones.Chest,
                      actor.GetReceivedPosition(NeuronBones.Spine1, this.orignalPositions[(int)HumanBodyBones.Chest])
                      );
 #if UNITY_2018_2_OR_NEWER
-                SetPosition(animator, HumanBodyBones.UpperChest,
+                SetPosition(actor.GetHasPosition(NeuronBones.Spine2), animator, HumanBodyBones.UpperChest,
                      actor.GetReceivedPosition(NeuronBones.Spine2)
                      );
 #endif
-                SetPosition(animator, HumanBodyBones.Neck,
+                SetPosition(actor.GetHasPosition(NeuronBones.Neck), animator, HumanBodyBones.Neck,
                      actor.GetReceivedPosition((NeuronBones)NeuronBonesV2.Neck, this.orignalPositions[(int)HumanBodyBones.Neck]) +
                      (EulerToQuaternion(actor.GetReceivedRotation((NeuronBones)NeuronBonesV2.Neck)) * actor.GetReceivedPosition((NeuronBones)NeuronBonesV2.Neck1))
                     );
             }
             else
             {
-                SetPosition(animator, HumanBodyBones.Chest, actor.GetReceivedPosition(NeuronBones.Spine3, this.orignalPositions[(int)HumanBodyBones.Chest]));
-                SetPosition(animator, HumanBodyBones.Neck, actor.GetReceivedPosition(NeuronBones.Neck, this.orignalPositions[(int)HumanBodyBones.Neck]));
+                SetPosition(actor.GetHasPosition(NeuronBones.Spine3), animator, HumanBodyBones.Chest, actor.GetReceivedPosition(NeuronBones.Spine3, this.orignalPositions[(int)HumanBodyBones.Chest]));
+                SetPosition(actor.GetHasPosition(NeuronBones.Neck), animator, HumanBodyBones.Neck, actor.GetReceivedPosition(NeuronBones.Neck, this.orignalPositions[(int)HumanBodyBones.Neck]));
             }
-			SetPosition( animator, HumanBodyBones.Head,						actor.GetReceivedPosition( NeuronBones.Head, this.orignalPositions[(int)HumanBodyBones.Head]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.Head), animator, HumanBodyBones.Head,						actor.GetReceivedPosition( NeuronBones.Head, this.orignalPositions[(int)HumanBodyBones.Head]) );
 			
 			// right arm
-			SetPosition( animator, HumanBodyBones.RightShoulder,			actor.GetReceivedPosition( NeuronBones.RightShoulder,  this.orignalPositions[(int)HumanBodyBones.RightShoulder]) );
-			SetPosition( animator, HumanBodyBones.RightUpperArm,			actor.GetReceivedPosition( NeuronBones.RightArm     ,  this.orignalPositions[(int)HumanBodyBones.RightUpperArm     ]) );
-			SetPosition( animator, HumanBodyBones.RightLowerArm,			actor.GetReceivedPosition( NeuronBones.RightForeArm ,  this.orignalPositions[(int)HumanBodyBones.RightLowerArm ]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.RightShoulder), animator, HumanBodyBones.RightShoulder, actor.GetReceivedPosition(NeuronBones.RightShoulder, this.orignalPositions[(int)HumanBodyBones.RightShoulder]));
+            SetPosition(actor.GetHasPosition(NeuronBones.RightArm), animator, HumanBodyBones.RightUpperArm, actor.GetReceivedPosition(NeuronBones.RightArm, this.orignalPositions[(int)HumanBodyBones.RightUpperArm]));
+            SetPosition(actor.GetHasPosition(NeuronBones.RightForeArm),  animator, HumanBodyBones.RightLowerArm,			actor.GetReceivedPosition( NeuronBones.RightForeArm ,  this.orignalPositions[(int)HumanBodyBones.RightLowerArm ]) );
 
             // right hand
             if (enableFingerMove)
             {
 
-                SetPosition(animator, HumanBodyBones.RightHand, actor.GetReceivedPosition(NeuronBones.RightHand, this.orignalPositions[(int)HumanBodyBones.RightHand]));
-                SetPosition(animator, HumanBodyBones.RightThumbProximal, actor.GetReceivedPosition(NeuronBones.RightHandThumb1, this.orignalPositions[(int)HumanBodyBones.RightThumbProximal]));
-                SetPosition(animator, HumanBodyBones.RightThumbIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandThumb2, this.orignalPositions[(int)HumanBodyBones.RightThumbIntermediate]));
-                SetPosition(animator, HumanBodyBones.RightThumbDistal, actor.GetReceivedPosition(NeuronBones.RightHandThumb3, this.orignalPositions[(int)HumanBodyBones.RightThumbDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHand),animator, HumanBodyBones.RightHand,              actor.GetReceivedPosition(NeuronBones.RightHand, this.orignalPositions[(int)HumanBodyBones.RightHand]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandThumb1),animator, HumanBodyBones.RightThumbProximal,     actor.GetReceivedPosition(NeuronBones.RightHandThumb1, this.orignalPositions[(int)HumanBodyBones.RightThumbProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandThumb2),animator, HumanBodyBones.RightThumbIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandThumb2, this.orignalPositions[(int)HumanBodyBones.RightThumbIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandThumb3), animator, HumanBodyBones.RightThumbDistal,       actor.GetReceivedPosition(NeuronBones.RightHandThumb3, this.orignalPositions[(int)HumanBodyBones.RightThumbDistal]));
 
-                SetPosition(animator, HumanBodyBones.RightIndexProximal, actor.GetReceivedPosition(NeuronBones.RightHandIndex1, this.orignalPositions[(int)HumanBodyBones.RightIndexProximal]));
-                SetPosition(animator, HumanBodyBones.RightIndexIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandIndex2, this.orignalPositions[(int)HumanBodyBones.RightIndexIntermediate]));
-                SetPosition(animator, HumanBodyBones.RightIndexDistal, actor.GetReceivedPosition(NeuronBones.RightHandIndex3, this.orignalPositions[(int)HumanBodyBones.RightIndexDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandIndex1),animator, HumanBodyBones.RightIndexProximal,    actor.GetReceivedPosition(NeuronBones.RightHandIndex1, this.orignalPositions[(int)HumanBodyBones.RightIndexProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandIndex2),animator, HumanBodyBones.RightIndexIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandIndex2, this.orignalPositions[(int)HumanBodyBones.RightIndexIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandIndex3), animator, HumanBodyBones.RightIndexDistal, actor.GetReceivedPosition(NeuronBones.RightHandIndex3, this.orignalPositions[(int)HumanBodyBones.RightIndexDistal]));
 
-                SetPosition(animator, HumanBodyBones.RightMiddleProximal, actor.GetReceivedPosition(NeuronBones.RightHandMiddle1, this.orignalPositions[(int)HumanBodyBones.RightMiddleProximal]));
-                SetPosition(animator, HumanBodyBones.RightMiddleIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandMiddle2, this.orignalPositions[(int)HumanBodyBones.RightMiddleIntermediate]));
-                SetPosition(animator, HumanBodyBones.RightMiddleDistal, actor.GetReceivedPosition(NeuronBones.RightHandMiddle3, this.orignalPositions[(int)HumanBodyBones.RightMiddleDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandMiddle1),animator, HumanBodyBones.RightMiddleProximal, actor.GetReceivedPosition(NeuronBones.RightHandMiddle1, this.orignalPositions[(int)HumanBodyBones.RightMiddleProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandMiddle2),animator, HumanBodyBones.RightMiddleIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandMiddle2, this.orignalPositions[(int)HumanBodyBones.RightMiddleIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandMiddle3),animator, HumanBodyBones.RightMiddleDistal, actor.GetReceivedPosition(NeuronBones.RightHandMiddle3, this.orignalPositions[(int)HumanBodyBones.RightMiddleDistal]));
 
-                SetPosition(animator, HumanBodyBones.RightRingProximal, actor.GetReceivedPosition(NeuronBones.RightHandRing1, this.orignalPositions[(int)HumanBodyBones.RightRingProximal]));
-                SetPosition(animator, HumanBodyBones.RightRingIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandRing2, this.orignalPositions[(int)HumanBodyBones.RightRingIntermediate]));
-                SetPosition(animator, HumanBodyBones.RightRingDistal, actor.GetReceivedPosition(NeuronBones.RightHandRing3, this.orignalPositions[(int)HumanBodyBones.RightRingDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandRing1),animator, HumanBodyBones.RightRingProximal, actor.GetReceivedPosition(NeuronBones.RightHandRing1, this.orignalPositions[(int)HumanBodyBones.RightRingProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandRing2),animator, HumanBodyBones.RightRingIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandRing2, this.orignalPositions[(int)HumanBodyBones.RightRingIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandRing3),animator, HumanBodyBones.RightRingDistal, actor.GetReceivedPosition(NeuronBones.RightHandRing3, this.orignalPositions[(int)HumanBodyBones.RightRingDistal]));
 
-                SetPosition(animator, HumanBodyBones.RightLittleProximal, actor.GetReceivedPosition(NeuronBones.RightHandPinky1, this.orignalPositions[(int)HumanBodyBones.RightLittleProximal]));
-                SetPosition(animator, HumanBodyBones.RightLittleIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandPinky2, this.orignalPositions[(int)HumanBodyBones.RightLittleIntermediate]));
-                SetPosition(animator, HumanBodyBones.RightLittleDistal, actor.GetReceivedPosition(NeuronBones.RightHandPinky3, this.orignalPositions[(int)HumanBodyBones.RightLittleDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandPinky1),animator, HumanBodyBones.RightLittleProximal, actor.GetReceivedPosition(NeuronBones.RightHandPinky1, this.orignalPositions[(int)HumanBodyBones.RightLittleProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandPinky2),animator, HumanBodyBones.RightLittleIntermediate, actor.GetReceivedPosition(NeuronBones.RightHandPinky2, this.orignalPositions[(int)HumanBodyBones.RightLittleIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.RightHandPinky3), animator, HumanBodyBones.RightLittleDistal, actor.GetReceivedPosition(NeuronBones.RightHandPinky3, this.orignalPositions[(int)HumanBodyBones.RightLittleDistal]));
             }
 			// left arm
-			SetPosition( animator, HumanBodyBones.LeftShoulder,				actor.GetReceivedPosition( NeuronBones.LeftShoulder, this.orignalPositions[(int)HumanBodyBones.LeftShoulder]) );
-			SetPosition( animator, HumanBodyBones.LeftUpperArm,				actor.GetReceivedPosition( NeuronBones.LeftArm,      this.orignalPositions[(int)HumanBodyBones.LeftUpperArm    ]) );
-			SetPosition( animator, HumanBodyBones.LeftLowerArm,				actor.GetReceivedPosition( NeuronBones.LeftForeArm,  this.orignalPositions[(int)HumanBodyBones.LeftLowerArm]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.LeftShoulder), animator, HumanBodyBones.LeftShoulder,				actor.GetReceivedPosition( NeuronBones.LeftShoulder, this.orignalPositions[(int)HumanBodyBones.LeftShoulder]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.LeftArm), animator, HumanBodyBones.LeftUpperArm,				actor.GetReceivedPosition( NeuronBones.LeftArm,      this.orignalPositions[(int)HumanBodyBones.LeftUpperArm    ]) );
+			SetPosition(actor.GetHasPosition(NeuronBones.LeftForeArm), animator, HumanBodyBones.LeftLowerArm,				actor.GetReceivedPosition( NeuronBones.LeftForeArm,  this.orignalPositions[(int)HumanBodyBones.LeftLowerArm]) );
 
             // left hand
             if (enableFingerMove)
             {
-                SetPosition(animator, HumanBodyBones.LeftHand, actor.GetReceivedPosition(NeuronBones.LeftHand, this.orignalPositions[(int)HumanBodyBones.LeftHand]));
-                SetPosition(animator, HumanBodyBones.LeftThumbProximal, actor.GetReceivedPosition(NeuronBones.LeftHandThumb1, this.orignalPositions[(int)HumanBodyBones.LeftThumbProximal]));
-                SetPosition(animator, HumanBodyBones.LeftThumbIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandThumb2, this.orignalPositions[(int)HumanBodyBones.LeftThumbIntermediate]));
-                SetPosition(animator, HumanBodyBones.LeftThumbDistal, actor.GetReceivedPosition(NeuronBones.LeftHandThumb3, this.orignalPositions[(int)HumanBodyBones.LeftThumbDistal]));
-
-                SetPosition(animator, HumanBodyBones.LeftIndexProximal, actor.GetReceivedPosition(NeuronBones.LeftHandIndex1, this.orignalPositions[(int)HumanBodyBones.LeftIndexProximal]));
-                SetPosition(animator, HumanBodyBones.LeftIndexIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandIndex2, this.orignalPositions[(int)HumanBodyBones.LeftIndexIntermediate]));
-                SetPosition(animator, HumanBodyBones.LeftIndexDistal, actor.GetReceivedPosition(NeuronBones.LeftHandIndex3, this.orignalPositions[(int)HumanBodyBones.LeftIndexDistal]));
-
-                SetPosition(animator, HumanBodyBones.LeftMiddleProximal, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle1, this.orignalPositions[(int)HumanBodyBones.LeftMiddleProximal]));
-                SetPosition(animator, HumanBodyBones.LeftMiddleIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle2, this.orignalPositions[(int)HumanBodyBones.LeftMiddleIntermediate]));
-                SetPosition(animator, HumanBodyBones.LeftMiddleDistal, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle3, this.orignalPositions[(int)HumanBodyBones.LeftMiddleDistal]));
-
-                SetPosition(animator, HumanBodyBones.LeftRingProximal, actor.GetReceivedPosition(NeuronBones.LeftHandRing1, this.orignalPositions[(int)HumanBodyBones.LeftRingProximal]));
-                SetPosition(animator, HumanBodyBones.LeftRingIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandRing2, this.orignalPositions[(int)HumanBodyBones.LeftRingIntermediate]));
-                SetPosition(animator, HumanBodyBones.LeftRingDistal, actor.GetReceivedPosition(NeuronBones.LeftHandRing3, this.orignalPositions[(int)HumanBodyBones.LeftRingDistal]));
-
-                SetPosition(animator, HumanBodyBones.LeftLittleProximal, actor.GetReceivedPosition(NeuronBones.LeftHandPinky1, this.orignalPositions[(int)HumanBodyBones.LeftLittleProximal]));
-                SetPosition(animator, HumanBodyBones.LeftLittleIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandPinky2, this.orignalPositions[(int)HumanBodyBones.LeftLittleIntermediate]));
-                SetPosition(animator, HumanBodyBones.LeftLittleDistal, actor.GetReceivedPosition(NeuronBones.LeftHandPinky3, this.orignalPositions[(int)HumanBodyBones.LeftLittleDistal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHand),animator, HumanBodyBones.LeftHand, actor.GetReceivedPosition(NeuronBones.LeftHand, this.orignalPositions[(int)HumanBodyBones.LeftHand]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandThumb1),animator, HumanBodyBones.LeftThumbProximal, actor.GetReceivedPosition(NeuronBones.LeftHandThumb1, this.orignalPositions[(int)HumanBodyBones.LeftThumbProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandThumb2),animator, HumanBodyBones.LeftThumbIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandThumb2, this.orignalPositions[(int)HumanBodyBones.LeftThumbIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandThumb3),animator, HumanBodyBones.LeftThumbDistal, actor.GetReceivedPosition(NeuronBones.LeftHandThumb3, this.orignalPositions[(int)HumanBodyBones.LeftThumbDistal]));
+    
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandIndex1),animator, HumanBodyBones.LeftIndexProximal, actor.GetReceivedPosition(NeuronBones.LeftHandIndex1, this.orignalPositions[(int)HumanBodyBones.LeftIndexProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandIndex2),animator, HumanBodyBones.LeftIndexIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandIndex2, this.orignalPositions[(int)HumanBodyBones.LeftIndexIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandIndex3),animator, HumanBodyBones.LeftIndexDistal, actor.GetReceivedPosition(NeuronBones.LeftHandIndex3, this.orignalPositions[(int)HumanBodyBones.LeftIndexDistal]));
+          
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandMiddle1),animator, HumanBodyBones.LeftMiddleProximal, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle1, this.orignalPositions[(int)HumanBodyBones.LeftMiddleProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandMiddle2),animator, HumanBodyBones.LeftMiddleIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle2, this.orignalPositions[(int)HumanBodyBones.LeftMiddleIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandMiddle3),animator, HumanBodyBones.LeftMiddleDistal, actor.GetReceivedPosition(NeuronBones.LeftHandMiddle3, this.orignalPositions[(int)HumanBodyBones.LeftMiddleDistal]));
+         
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandRing1),animator, HumanBodyBones.LeftRingProximal, actor.GetReceivedPosition(NeuronBones.LeftHandRing1, this.orignalPositions[(int)HumanBodyBones.LeftRingProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandRing2),animator, HumanBodyBones.LeftRingIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandRing2, this.orignalPositions[(int)HumanBodyBones.LeftRingIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandRing3),animator, HumanBodyBones.LeftRingDistal, actor.GetReceivedPosition(NeuronBones.LeftHandRing3, this.orignalPositions[(int)HumanBodyBones.LeftRingDistal]));
+      
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandPinky1),animator, HumanBodyBones.LeftLittleProximal, actor.GetReceivedPosition(NeuronBones.LeftHandPinky1, this.orignalPositions[(int)HumanBodyBones.LeftLittleProximal]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandPinky2),animator, HumanBodyBones.LeftLittleIntermediate, actor.GetReceivedPosition(NeuronBones.LeftHandPinky2, this.orignalPositions[(int)HumanBodyBones.LeftLittleIntermediate]));
+                SetPosition(actor.GetHasPosition(NeuronBones.LeftHandPinky3), animator, HumanBodyBones.LeftLittleDistal, actor.GetReceivedPosition(NeuronBones.LeftHandPinky3, this.orignalPositions[(int)HumanBodyBones.LeftLittleDistal]));
             }
         }
 		
