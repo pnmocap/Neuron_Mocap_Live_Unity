@@ -35,13 +35,15 @@ public class NeuronTransformsInstanceEditor : Editor
 
         }
 
+        EditorGUILayout.PropertyField(addressField);
         if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
         {
-            EditorGUILayout.PropertyField(addressField);
             EditorGUILayout.PropertyField(tcpPortField);
         }
         else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
+        {
             EditorGUILayout.PropertyField(udpPortField);
+        }
         serializedObject.ApplyModifiedProperties();
         DrawDefaultInspector();
         if(preUseNewRig != (int)script.skeletonType)

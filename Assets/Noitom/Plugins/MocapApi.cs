@@ -24,6 +24,11 @@ namespace MocapApi
         Error_NoneChild=14,
         Error_AddressInUse=15,
         Error_ServerNotReady=16,
+        Error_ClientNotReady=17,
+        Error_IncompleteCommand=18,
+        Error_UDP=19,
+        Error_TCP=20,
+        Error_QueuedCommandFaild=21,
     };
     public enum EMCPJointTag
     {
@@ -175,10 +180,6 @@ namespace MocapApi
                 return tracker;
             }
         }
-        public EMCPError ReqConfigSyn(ulong ulTrackerHandle)
-        {
-            return ProcTable.ReqConfigSyn(ulTrackerHandle);
-        }
         public EMCPError SendMessageData(string message, int len, ulong ulTrackerHandle)
         {
             return ProcTable.SendMessageData(message, len, ulTrackerHandle);
@@ -216,11 +217,6 @@ namespace MocapApi
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPTracker_ProcTable
         {
-            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate EMCPError _ReqConfigSyn(ulong ulTrackerHandle);
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            internal _ReqConfigSyn ReqConfigSyn;
-            
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
             internal delegate EMCPError _SendMessageData(string message, int len, ulong ulTrackerHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
@@ -680,6 +676,88 @@ namespace MocapApi
             ProcTable = (MCPAvatar_ProcTable)Marshal.PtrToStructure(pp, typeof(MCPAvatar_ProcTable));
         }
     };
+    public enum EMCPCommand
+    {
+        CommandStartCapture=0,
+        CommandStopCapture=1,
+        CommandZeroPosition=2,
+        CommandCalibrateMotion=3,
+        CommandStartRecored=4,
+        CommandStopRecored=5,
+    };
+    public enum EMCPCommandStopCatpureExtraFlag
+    {
+        StopCatpureExtraFlag_SensorsModulesPowerOff=0,
+        StopCatpureExtraFlag_SensorsModulesHibernate=1,
+    };
+    public enum EMCPCommandExtraLong
+    {
+        CommandExtraLong_DeviceRadio=0,
+        CommandExtraLong_AvatarIndex=1,
+    };
+    public class IMCPCommand
+    {
+        static public IMCPCommand Command
+        {
+            get
+            {
+                if (null == command)
+                {
+                    command = new IMCPCommand();
+                }
+                return command;
+            }
+        }
+        public EMCPError CreateCommand(uint cmd, ref ulong handle_)
+        {
+            return ProcTable.CreateCommand(cmd, ref handle_);
+        }
+        public EMCPError SetExtraFlags(uint extraFlags, ulong handle_)
+        {
+            return ProcTable.SetExtraFlags(extraFlags, handle_);
+        }
+        //public EMCPError SetExtraLong(uint extraLongIndex, intptr_t extraLong, ulong handle_)
+        //{
+        //    return ProcTable.SetExtraLong(extraLongIndex, extraLong, handle_);
+        //}
+        public EMCPError DestroyCommand(ulong handle_)
+        {
+            return ProcTable.DestroyCommand(handle_);
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MCPCommand_ProcTable
+        {
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _CreateCommand(uint cmd, ref ulong handle_);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _CreateCommand CreateCommand;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _SetExtraFlags(uint extraFlags, ulong handle_);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _SetExtraFlags SetExtraFlags;
+            
+            //[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            //internal delegate EMCPError _SetExtraLong(uint extraLongIndex, intptr_t extraLong, ulong handle_);
+            //[MarshalAs(UnmanagedType.FunctionPtr)]
+            //internal _SetExtraLong SetExtraLong;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _DestroyCommand(ulong handle_);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _DestroyCommand DestroyCommand;
+            
+        }
+        private MCPCommand_ProcTable ProcTable;
+        private static IMCPCommand command;
+        private const string IMCPCommand_Version = "IMCPIMCPCommand_001";
+        private IMCPCommand()
+        {
+            IntPtr pp = IntPtr.Zero;
+            var er = Interop.MCPGetGenericInterface(Interop.ProcTable_Prefix + IMCPCommand_Version, ref pp);
+            ProcTable = (MCPCommand_ProcTable)Marshal.PtrToStructure(pp, typeof(MCPCommand_ProcTable));
+        }
+    };
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_Reserved_t
     {
@@ -699,6 +777,7 @@ namespace MocapApi
     public struct MCPEvent_SystemError_t
     {
         public EMCPError error;
+        public ulong info0;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_SensorModuleData_t
@@ -710,6 +789,11 @@ namespace MocapApi
     {
         public ulong _trackerHandle;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MCPEvent_CommandRespond_t
+    {
+        public ulong _commandHandle;
+    }
     [StructLayout(LayoutKind.Explicit)]
     public struct MCPEventData_t
     {
@@ -718,6 +802,7 @@ namespace MocapApi
         [FieldOffset(0)] public MCPEvent_SystemError_t systemError;
         [FieldOffset(0)] public MCPEvent_SensorModuleData_t sensorModuleData;
         [FieldOffset(0)] public MCPEvent_TrackerData_t trackerData;
+        [FieldOffset(0)] public MCPEvent_CommandRespond_t commandRespond;
     };
     public enum EMCPEventType
     {
@@ -727,6 +812,7 @@ namespace MocapApi
         MCPEvent_Error=768,
         MCPEvent_SensorModulesUpdated=1024,
         MCPEvent_TrackerUpdated=1280,
+        MCPEvent_CommandRespond=1536,
     };
     [StructLayout(LayoutKind.Sequential)]
     public struct MCPEvent_t
@@ -802,6 +888,10 @@ namespace MocapApi
         {
             return ProcTable.SetSettingsCalcData(ulSettingsHandle);
         }
+        public EMCPError SetSettingsUDPServer(string serverIp, ushort serverPort, ulong ulSettingsHandle)
+        {
+            return ProcTable.SetSettingsUDPServer(serverIp, serverPort, ulSettingsHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPSettings_ProcTable
         {
@@ -844,6 +934,11 @@ namespace MocapApi
             internal delegate EMCPError _SetSettingsCalcData(ulong ulSettingsHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _SetSettingsCalcData SetSettingsCalcData;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _SetSettingsUDPServer(string serverIp, ushort serverPort, ulong ulSettingsHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _SetSettingsUDPServer SetSettingsUDPServer;
             
         }
         private MCPSettings_ProcTable ProcTable;
@@ -1102,6 +1197,10 @@ namespace MocapApi
         {
             return ProcTable.GetApplicationSensorModules(ref pSensorModuleHandle, ref punSensorModuleHandle, ulApplicationHandle);
         }
+        public EMCPError QueuedServerCommand(ulong cmdHandle, ulong ulApplicationHandle)
+        {
+            return ProcTable.QueuedServerCommand(cmdHandle, ulApplicationHandle);
+        }
         [StructLayout(LayoutKind.Sequential)]
         private struct MCPApplication_ProcTable
         {
@@ -1174,6 +1273,11 @@ namespace MocapApi
             internal delegate EMCPError _GetApplicationSensorModules(ref ulong pSensorModuleHandle, ref uint punSensorModuleHandle, ulong ulApplicationHandle);
             [MarshalAs(UnmanagedType.FunctionPtr)]
             internal _GetApplicationSensorModules GetApplicationSensorModules;
+            
+            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+            internal delegate EMCPError _QueuedServerCommand(ulong cmdHandle, ulong ulApplicationHandle);
+            [MarshalAs(UnmanagedType.FunctionPtr)]
+            internal _QueuedServerCommand QueuedServerCommand;
             
         }
         private MCPApplication_ProcTable ProcTable;

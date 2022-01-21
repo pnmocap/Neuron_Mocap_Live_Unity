@@ -77,8 +77,11 @@ public static class MocapApiManager
                 IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary | EMCPBvhData.BvhDataType_Mask_LegacyHumanHierarchy, settings);
             IMCPSettings.Settings.SetSettingsBvhRotation(EMCPBvhRotation.BvhRotation_YXZ, settings);
             IMCPSettings.Settings.SetSettingsBvhTransformation(EMCPBvhTransformation.BvhTransformation_Enable, settings);
-            if(socketType == NeuronEnums.SocketType.UDP)
-                IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
+            if (socketType == NeuronEnums.SocketType.UDP)
+            {
+                IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)port, settings);                
+                //IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
+            }
             else
                 IMCPSettings.Settings.SetSettingsTCP(address, (ushort)port, settings);
             IMCPApplication.Application.SetApplicationSettings(settings, applicationHandle);

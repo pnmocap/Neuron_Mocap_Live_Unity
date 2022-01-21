@@ -28,13 +28,15 @@ public class NeuronAnimatorInstanceEditor : Editor
             physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
         }
 
+        EditorGUILayout.PropertyField(addressField);
         if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
         {
-            EditorGUILayout.PropertyField(addressField);
             EditorGUILayout.PropertyField(tcpPortField);
         }
         else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
+        {
             EditorGUILayout.PropertyField(udpPortField);
+        }
         serializedObject.ApplyModifiedProperties();
 
         if (disableBoneMovementField == null)
