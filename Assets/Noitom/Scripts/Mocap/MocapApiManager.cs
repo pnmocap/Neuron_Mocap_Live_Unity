@@ -79,8 +79,8 @@ public static class MocapApiManager
             IMCPSettings.Settings.SetSettingsBvhTransformation(EMCPBvhTransformation.BvhTransformation_Enable, settings);
             if (socketType == NeuronEnums.SocketType.UDP)
             {
+                IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
                 IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)port, settings);                
-                //IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
             }
             else
                 IMCPSettings.Settings.SetSettingsTCP(address, (ushort)port, settings);
