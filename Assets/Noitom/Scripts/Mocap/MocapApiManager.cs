@@ -22,7 +22,7 @@ public static class MocapApiManager
     static List<NeuronSource> AllNeuronSources = new List < NeuronSource >();
     static Dictionary<string, ulong> connectionApplications = new Dictionary<string, ulong>();
 
-    public static NeuronSource RequareConnection(string address, int port,  NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
+    public static NeuronSource RequareConnection(string address, int port, int portUdpServer,  NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
         string connStrId = GetConnectionStringId(address, port, socketType);
         ulong applicationHandle;
@@ -32,7 +32,7 @@ public static class MocapApiManager
         }
         else
         {
-            applicationHandle = CreateApplicationConnection(address, port, socketType, skeletonType);
+            applicationHandle = CreateApplicationConnection(address, port, portUdpServer, socketType, skeletonType);
             if (applicationHandle > 0)
                 connectionApplications.Add(connStrId, applicationHandle);
             else
@@ -61,7 +61,7 @@ public static class MocapApiManager
     }
 
 
-    static ulong CreateApplicationConnection(string address, int port, NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
+    static ulong CreateApplicationConnection(string address, int port, int portUdpServer, NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
         isConnectFailed = false;
         ulong applicationHandle = 0;
@@ -80,12 +80,12 @@ public static class MocapApiManager
             if (socketType == NeuronEnums.SocketType.UDP)
             {
                 IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
-                IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)port, settings);                
+                IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)portUdpServer, settings);                
             }
             else
                 IMCPSettings.Settings.SetSettingsTCP(address, (ushort)port, settings);
             IMCPApplication.Application.SetApplicationSettings(settings, applicationHandle);
-            IMCPSettings.Settings.DestroySettings(settings);
+            IMCPSettings.Settings.DestroySettings(settings); 
             IMCPApplication.Application.OpenApplication(applicationHandle);
 
 

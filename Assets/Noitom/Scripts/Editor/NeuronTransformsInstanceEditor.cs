@@ -12,6 +12,7 @@ public class NeuronTransformsInstanceEditor : Editor
     SerializedProperty addressField;
     SerializedProperty tcpPortField;
     SerializedProperty udpPortField;
+    SerializedProperty udpServerPortField;
     SerializedProperty physicalReferenceOverrideField;
 
     SerializedProperty disableBoneMovementField;
@@ -31,6 +32,7 @@ public class NeuronTransformsInstanceEditor : Editor
             addressField = serializedObject.FindProperty("address");
             tcpPortField = serializedObject.FindProperty("portTcp");
             udpPortField = serializedObject.FindProperty("portUdp");
+            udpServerPortField = serializedObject.FindProperty("portUdpServer");
             physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
 
         }
@@ -43,6 +45,7 @@ public class NeuronTransformsInstanceEditor : Editor
         else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
         {
             EditorGUILayout.PropertyField(udpPortField);
+            EditorGUILayout.PropertyField(udpServerPortField);
         }
         serializedObject.ApplyModifiedProperties();
         DrawDefaultInspector();

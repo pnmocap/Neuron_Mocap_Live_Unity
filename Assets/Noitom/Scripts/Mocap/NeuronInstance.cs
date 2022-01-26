@@ -41,6 +41,8 @@ namespace Neuron
         public int							portTcp = 7003;
         [HideInInspector]
         public int                          portUdp = 7004;
+        [HideInInspector]
+        public int                          portUdpServer = 7003; 
         public NeuronEnums.SocketType	socketType = NeuronEnums.SocketType.TCP;
         //[Space(5)]
         [Header("Index of avatar in axis software, default is zero")]
@@ -171,7 +173,7 @@ namespace Neuron
 		protected bool Connect()
 		{
             //source = NeuronConnection.Connect( address, port, commandServerPort, socketType );
-            source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), socketType, skeletonType);
+            source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), portUdpServer, socketType, skeletonType);
 
             if ( source != null )
 			{
