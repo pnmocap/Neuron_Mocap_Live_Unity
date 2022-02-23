@@ -5,10 +5,6 @@ using UnityEditor;
 [CustomEditor(typeof(NeuronAnimatorInstance))]
 public class NeuronAnimatorInstanceEditor : Editor 
 {
-    SerializedProperty addressField;
-    SerializedProperty tcpPortField;
-    SerializedProperty udpPortField;
-    SerializedProperty udpServerPortField;
     SerializedProperty physicalReferenceOverrideField;
     SerializedProperty disableBoneMovementField;
     //void OnEnable()
@@ -21,26 +17,7 @@ public class NeuronAnimatorInstanceEditor : Editor
     {
         NeuronAnimatorInstance script = (NeuronAnimatorInstance)target;
 
-        if (addressField == null)
-        {
-            addressField = serializedObject.FindProperty("address");
-            tcpPortField = serializedObject.FindProperty("portTcp");
-            udpPortField = serializedObject.FindProperty("portUdp");
-            udpServerPortField = serializedObject.FindProperty("portUdpServer");
-            physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
-        }
-
-        EditorGUILayout.PropertyField(addressField);
-        if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
-        {
-            EditorGUILayout.PropertyField(tcpPortField);
-        }
-        else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
-        {
-            EditorGUILayout.PropertyField(udpPortField);
-            EditorGUILayout.PropertyField(udpServerPortField);
-        }
-        serializedObject.ApplyModifiedProperties();
+        physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
 
         if (disableBoneMovementField == null)
             disableBoneMovementField = serializedObject.FindProperty("disableBoneMovement");

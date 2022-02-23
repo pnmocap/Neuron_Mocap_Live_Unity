@@ -64,7 +64,7 @@ namespace Neuron
             }
             inited = true;
 
-            base.OnEnable();
+            //base.OnEnable();
 			
 			if( root == null )
 			{
@@ -76,7 +76,7 @@ namespace Neuron
 		
 		new void Update()
 		{
-			base.ToggleConnect();
+			//base.ToggleConnect();
 			base.Update();
 			
 			if( boundActor != null && boundTransforms && motionUpdateMethod == UpdateMethod.Normal )
@@ -93,7 +93,7 @@ namespace Neuron
 		
 		void FixedUpdate()
 		{
-			base.ToggleConnect();
+			//base.ToggleConnect();
 			
 			if(boundTransforms && motionUpdateMethod != UpdateMethod.Normal )
 			{				

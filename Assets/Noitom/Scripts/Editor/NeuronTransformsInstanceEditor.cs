@@ -8,6 +8,7 @@ public class NeuronTransformsInstanceEditor : Editor
 {
 
     // https://catlikecoding.com/unity/tutorials/editor/custom-list/
+    SerializedProperty actorIDField;
     SerializedProperty transformsField;
     SerializedProperty addressField;
     SerializedProperty tcpPortField;
@@ -26,30 +27,16 @@ public class NeuronTransformsInstanceEditor : Editor
     {
         Neuron.NeuronTransformsInstance script = (Neuron.NeuronTransformsInstance)target;
 
+        actorIDField = serializedObject.FindProperty("actorID");
+        EditorGUILayout.PropertyField(actorIDField);
+
         int preUseNewRig = (int)script.skeletonType;
-        if (addressField == null)
-        {
-            addressField = serializedObject.FindProperty("address");
-            tcpPortField = serializedObject.FindProperty("portTcp");
-            udpPortField = serializedObject.FindProperty("portUdp");
-            udpServerPortField = serializedObject.FindProperty("portUdpServer");
-            physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
 
-        }
-
-        EditorGUILayout.PropertyField(addressField);
-        if (script.socketType == Neuron.NeuronEnums.SocketType.TCP)
-        {
-            EditorGUILayout.PropertyField(tcpPortField);
-        }
-        else if (script.socketType == Neuron.NeuronEnums.SocketType.UDP)
-        {
-            EditorGUILayout.PropertyField(udpPortField);
-            EditorGUILayout.PropertyField(udpServerPortField);
-        }
+        physicalReferenceOverrideField = serializedObject.FindProperty("physicalReferenceOverride");
+        EditorGUILayout.PropertyField(physicalReferenceOverrideField);
         serializedObject.ApplyModifiedProperties();
-        DrawDefaultInspector();
-        if(preUseNewRig != (int)script.skeletonType)
+
+        if (preUseNewRig != (int)script.skeletonType)
         {
             if (script.root == null)
                 script.root = script.transform;

@@ -17,13 +17,13 @@ namespace Neuron
             }
             inited = true;
 
-            base.OnEnable();
+            //base.OnEnable();
 
         }
 
         new void Update()
         {
-            base.ToggleConnect();
+            //base.ToggleConnect();
             base.Update();
 
             //if( boundActor != null)

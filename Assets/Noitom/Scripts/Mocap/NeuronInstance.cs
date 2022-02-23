@@ -31,81 +31,37 @@ namespace Neuron
 		MixedPhysical
 	}
 
-	// NeuronInstance 
-	public class NeuronInstance : MonoBehaviour
-	{
-		[Header("Connection settings:")]
-        [HideInInspector]
-		public string						address = "127.0.0.1";
-        [HideInInspector]
-        public int							portTcp = 7003;
-        [HideInInspector]
-        public int                          portUdp = 7004;
-        [HideInInspector]
-        public int                          portUdpServer = 7003; 
-        public NeuronEnums.SocketType	socketType = NeuronEnums.SocketType.TCP;
+    // NeuronInstance 
+    public class NeuronInstance : MonoBehaviour
+    {
+        public NeuronEnums.SkeletonType skeletonType = NeuronEnums.SkeletonType.PerceptionNeuronStudio;
+
         //[Space(5)]
         [Header("Index of avatar in axis software, default is zero")]
-        public int							actorID = 0;
+        public int actorID = 0;               
 
-        //[Space(10)]
-        [Header("Whether to connect to axis software")]
-        public bool							connectToAxis = true;
+        protected NeuronActor boundActor = null;
 
-        public NeuronEnums.SkeletonType skeletonType = NeuronEnums.SkeletonType.PerceptionNeuronStudio;
-        protected bool                      hasConnected;
+        public bool noFrameData { get; private set; }
 
-		protected NeuronActor				boundActor = null;
-		//protected bool						standalone = true;
-		//protected int						lastEvaluateTime = 0;
-		//protected bool						boneSizesDirty = false;
-		//protected bool						applyBoneSizes = false;
+        public void Init(NeuronSource source, NeuronEnums.SkeletonType sklType)
+        {
+            if (source != null)
+            {
+                boundActor = source.AcquireActor(actorID);
+                if (boundActor != null)
+                {
+                    skeletonType = sklType;
+                    RegisterCallbacks();
+                }
+            }
+        }
 
-		public bool							noFrameData { get ; private set; }
-
-        protected NeuronSource source;
-
-  //      public NeuronInstance()
-		//{
-		//}
-
-		//public NeuronInstance( string address, int port, int commandServerPort, NeuronEnums.SocketType socketType, int actorID )
-		//{
-		//	//standalone = true;
-		//}
-
-		//public NeuronInstance( NeuronActor boundActor )
-		//{
-		//	if( boundActor != null )
-		//	{
-		//		this.boundActor = boundActor;
-		//		RegisterCallbacks();
-		//		//standalone = false;
-		//	}
-		//}
-
-		//public void SetBoundActor( NeuronActor actor )
-		//{
-		//	if( boundActor != null )
-		//	{
-		//		UnregisterCallbacks();
-		//	}
-
-		//	if( actor != null )
-		//	{
-		//		boundActor = actor;
-		//		RegisterCallbacks();
-		//		actorID = actor.actorID;
-
-		//		NeuronSource source = actor.owner;
-		//		address = source.address;
-		//		port = source.port;
-		//		commandServerPort = source.commandServerPort;
-		//		socketType = source.socketType;
-
-		//		standalone = false;
-		//	}
-		//}
+        public void Showdown()
+        {
+            UnregisterCallbacks();
+            boundActor = null;
+        }
 
 		protected void RegisterCallbacks()
 		{
@@ -123,21 +79,8 @@ namespace Neuron
 			{
 				boundActor.UnregisterNoFrameDataCallback( OnNoFrameData );
 				boundActor.UnregisterResumeFrameDataCallback( OnResumeFrameData );
-			}
-		}
-
-		protected void OnEnable()
-		{
-			ToggleConnect();
-		}
-
-		protected void OnDisable()
-		{
-			if( boundActor != null)// && standalone )
-			{
-				Disconnect();
-				boundActor = null;
-			}
+                boundActor = null;
+            }
 		}
 
 		protected void Update()
@@ -150,48 +93,6 @@ namespace Neuron
 			}
 		}
 
-		protected void ToggleConnect()
-		{
-            //if (standalone)
-            {
-                if (connectToAxis && boundActor == null)
-                {
-                    hasConnected = Connect();
-                }
-                else if (!connectToAxis && boundActor != null)
-                {
-                    Disconnect();
-                }
-            }
-		}
-
-        int GetPortByConnectionType()
-        {
-            return socketType == NeuronEnums.SocketType.TCP ? portTcp : portUdp;
-        }
-
-		protected bool Connect()
-		{
-            //source = NeuronConnection.Connect( address, port, commandServerPort, socketType );
-            source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), portUdpServer, socketType, skeletonType);
-
-            if ( source != null )
-			{
-				boundActor = source.AcquireActor( actorID );
-				RegisterCallbacks();
-			}
-
-			return source != null;
-		}
-
-		protected void Disconnect()
-		{
-            //NeuronConnection.Disconnect( boundActor.owner );
-            MocapApiManager.Disconnect(boundActor.owner);
-            UnregisterCallbacks();
-			boundActor = null;
-            source = null;
-        }
 
 		public virtual bool OnNoFrameData()
 		{

@@ -56,7 +56,7 @@ public class NeuronAnimatorInstance : NeuronInstance
             return;
         }
         inited = true;
-        base.OnEnable();
+        //base.OnEnable();
 		if( boundAnimator == null )
 		{
 			boundAnimator = GetComponent<Animator>();
@@ -67,7 +67,7 @@ public class NeuronAnimatorInstance : NeuronInstance
 	
 	new void Update()
 	{	
-		base.ToggleConnect();
+		//base.ToggleConnect();
 		base.Update();
 		
 		if( boundActor != null && boundAnimator != null && motionUpdateMethod == UpdateMethod.Normal) // !physicalUpdate )
