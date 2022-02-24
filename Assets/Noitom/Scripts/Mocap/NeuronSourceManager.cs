@@ -13,9 +13,9 @@ namespace Neuron
         [HideInInspector]
         public int portTcp = 7003;
         [HideInInspector]
-        public int portUdp = 7004;
-        [HideInInspector]
         public int portUdpServer = 7003;
+        [HideInInspector]
+        public int portUdp = 7004;
         public NeuronEnums.SocketType socketType = NeuronEnums.SocketType.TCP;
 
         public NeuronEnums.SkeletonType skeletonType = NeuronEnums.SkeletonType.PerceptionNeuronStudio;
