@@ -1,6 +1,7 @@
 # NEURON MOCAP LIVE Plugin for Unity
  
 This plugin provide the ability to stream motion data from Axis Studio into Unity.
+Download plugin package from Github  [release page](https://github.com/pnmocap/Neuron_Mocap_Live_Unity/releases)
 
 ### Prerequisites
   
