@@ -127,6 +127,20 @@ namespace Neuron
                 return actor;
             }
 		}
+        public NeuronActor AcquireActor(string actorName)
+        {
+            lock (actorCreateDestroyLock)
+            {
+                NeuronActor actor = FindTrackingMotionByAvatarName(actorName);
+                if (actor != null)
+                {
+                    return actor;
+                }
+
+                actor = CreateActor(actor.AvatarIndex);
+                return actor;
+            }
+        }
         public NeuronActor[] GetActors()
 		{
             NeuronActor[] actors = new NeuronActor[allActors.Count];

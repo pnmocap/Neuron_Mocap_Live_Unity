@@ -47,6 +47,8 @@ namespace Neuron
         //[Space(5)]
         [Header("Index of avatar in axis software, default is zero")]
         public int							actorID = 0;
+        [Header("Name of avatar in axis software, will use actorID it's empty")]
+        public string                       avatarName = "";
 
         //[Space(10)]
         [Header("Whether to connect to axis software")]
@@ -177,8 +179,11 @@ namespace Neuron
 
             if ( source != null )
 			{
-				boundActor = source.AcquireActor( actorID );
-				RegisterCallbacks();
+                if(string.IsNullOrEmpty(avatarName))
+				    boundActor = source.AcquireActor( actorID );
+                else
+                    boundActor = source.AcquireActor(avatarName);
+                RegisterCallbacks();
 			}
 
 			return source != null;
