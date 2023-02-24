@@ -137,7 +137,7 @@ namespace Neuron
                     return actor;
                 }
 
-                actor = CreateActor(actor.AvatarIndex);
+                actor = CreateActor(allActors.Count);
                 return actor;
             }
         }
