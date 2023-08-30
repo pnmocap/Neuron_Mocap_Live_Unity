@@ -18,103 +18,104 @@
 ************************************************************************************/
 
 using System;
+using UnityEngine;
+using System.Linq;
+using NeuronDataReaderManaged;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using UnityEngine;
-using NeuronDataReaderManaged;
 
 namespace Neuron
 {
-	public class NeuronSource
-	{
-		public static int									NoDataFrameTimeOut = 5000;
-		public delegate void ResumeActorDelegate( NeuronActor actor );
-		public delegate void SuspendActorDelegate( NeuronActor actor );
-		
-		List<ResumeActorDelegate>							resumeActorCallbacks = new List<ResumeActorDelegate>();
-		List<SuspendActorDelegate>							suspendActorCallbacks = new List<SuspendActorDelegate>();
-		Dictionary<int, NeuronActor>				        allActors = new Dictionary<int, NeuronActor>();
+    public class NeuronSource
+    {
+        public static int NoDataFrameTimeOut = 5000;
+        public delegate void ResumeActorDelegate(NeuronActor actor);
+        public delegate void SuspendActorDelegate(NeuronActor actor);
 
-        object                                              actorCreateDestroyLock = new object();
-		
-		public Guid											guid = Guid.NewGuid();
+        List<ResumeActorDelegate> resumeActorCallbacks = new List<ResumeActorDelegate>();
+        List<SuspendActorDelegate> suspendActorCallbacks = new List<SuspendActorDelegate>();
+        Dictionary<int, NeuronActor> allActors = new Dictionary<int, NeuronActor>();// key：index
+        int actorIndex = 0;
+
+        object actorCreateDestroyLock = new object();
+
+        public Guid guid = Guid.NewGuid();
         public ulong applicationHandle;
 
-        public string										address { get; private set; }
-		public int											port { get; private set; }
+        public string address { get; private set; }
+        public int port { get; private set; }
 
-		public NeuronEnums.SocketType					socketType { get; private set; }
+        public NeuronEnums.SocketType socketType { get; private set; }
 
-		public int											numOfAllActors { get { return allActors.Count; } }
+        public int numOfAllActors { get { return allActors.Count; } }
 
-		public int											referenceCounter { get; private set; }
+        public int referenceCounter { get; private set; }
         public bool HasActorReference { get { return referenceCounter > 0; } }
-		
-		public NeuronSource( string address, int port, NeuronEnums.SocketType socketType)
-		{
-			this.address = address;
-			this.port = port;
-			this.socketType = socketType;
-			this.referenceCounter = 0;
-			
-		}
-		
-		public void RegisterResumeActorCallback( ResumeActorDelegate callback )
-		{
-			if( callback != null )
-			{
-				resumeActorCallbacks.Add( callback );
-			}
-		}
-		
-		public void UnregisterResumeActorCallback( ResumeActorDelegate callback )
-		{
-			if( callback != null )
-			{
-				resumeActorCallbacks.Remove( callback );
-			}
-		}
-		
-		public void RegisterSuspendActorCallback( SuspendActorDelegate callback )
-		{
-			if( callback != null )
-			{
-				suspendActorCallbacks.Add( callback );
-			}
-		}
-		
-		public void UnregisterSuspendActorCallback( SuspendActorDelegate callback )
-		{
-			if( callback != null )
-			{
-				suspendActorCallbacks.Remove( callback );
-			}
-		}
-		
-		public void Grab()
-		{
-			++referenceCounter;
-		}
-		
-		public void Release()
-		{
-			--referenceCounter;
-		}
-		
+
+        public NeuronSource(string address, int port, NeuronEnums.SocketType socketType)
+        {
+            this.address = address;
+            this.port = port;
+            this.socketType = socketType;
+            this.referenceCounter = 0;
+        }
+
+        public void RegisterResumeActorCallback(ResumeActorDelegate callback)
+        {
+            if (callback != null)
+            {
+                resumeActorCallbacks.Add(callback);
+            }
+        }
+
+        public void UnregisterResumeActorCallback(ResumeActorDelegate callback)
+        {
+            if (callback != null)
+            {
+                resumeActorCallbacks.Remove(callback);
+            }
+        }
+
+        public void RegisterSuspendActorCallback(SuspendActorDelegate callback)
+        {
+            if (callback != null)
+            {
+                suspendActorCallbacks.Add(callback);
+            }
+        }
+
+        public void UnregisterSuspendActorCallback(SuspendActorDelegate callback)
+        {
+            if (callback != null)
+            {
+                suspendActorCallbacks.Remove(callback);
+            }
+        }
+
+        public void Grab()
+        {
+            ++referenceCounter;
+        }
+
+        public void Release()
+        {
+            --referenceCounter;
+        }
 
 
-		public void OnUpdate()
-		{
-           	
-		}
-		
-		
-		//public virtual void OnSocketStatusChanged( SocketStatus status, string msg )
-		//{
-		//}
 
-        public NeuronActor AcquireActor( int actorID)
-		{
+        public void OnUpdate()
+        {
+
+        }
+
+
+        //public virtual void OnSocketStatusChanged( SocketStatus status, string msg )
+        //{
+        //}
+
+        public NeuronActor AcquireActor(int actorID)
+        {
             lock (actorCreateDestroyLock)
             {
                 NeuronActor actor = FindActorById(actorID);
@@ -126,7 +127,7 @@ namespace Neuron
                 actor = CreateActor(actorID);
                 return actor;
             }
-		}
+        }
         public NeuronActor AcquireActor(string actorName)
         {
             lock (actorCreateDestroyLock)
@@ -137,74 +138,100 @@ namespace Neuron
                     return actor;
                 }
 
-                actor = CreateActor(allActors.Count);
+                actor = CreateActor(allActors.Count, actorName);
                 return actor;
             }
         }
         public NeuronActor[] GetActors()
-		{
+        {
             NeuronActor[] actors = new NeuronActor[allActors.Count];
             allActors.Values.CopyTo(actors, 0);
             return actors;
         }
 
-		NeuronActor CreateActor( int actorID )
-		{
-			NeuronActor find = FindActorById( actorID );
-			if( find == null )
-			{
-                NeuronActor actor = new NeuronActor(this, actorID);
-                allActors.Add(actorID, actor);
-                return actor;
+        NeuronActor CreateActor(int actorID, string actorName = null)
+        {
+            NeuronActor find = FindActorById(actorID);
+            if (find == null)
+            {
+                if (!string.IsNullOrEmpty(actorName))
+                {
+                    find = FindTrackingMotionByAvatarName(actorName);
+                }
+
+                if (find == null)
+                {
+                    NeuronActor actor = new NeuronActor(this, actorID);
+                    if (!string.IsNullOrEmpty(actorName))
+                    {
+                        actor.SetAvatarName(actorName);
+                    }
+                    allActors.Add(actorIndex, actor);
+                    actorIndex++;
+                    return actor;
+                }
+                else
+                {
+                    return find;
+                }
             }
-			return find;
-		}
-		
-		void DestroyActor( int actorID )
-		{
+            return find;
+        }
+
+        void DestroyActor(int actorID)
+        {
             lock (actorCreateDestroyLock)
             {
-                allActors.Remove(actorID);
+                for (int i = 0; i < allActors.Count; i++)
+                {
+                    KeyValuePair<int, NeuronActor> kv = allActors.ElementAt(i);
+                    if (kv.Value.AvatarIndex == actorID)
+                    {
+                        allActors.Remove(kv.Key);
+                    }
+                }
             }
-		}
-		
-		//void SuspendActor( NeuronActor actor )
-		//{
-  //          actor.IsActive = false;
-  //          Debug.Log( string.Format( "[NeuronSource] Suspend actor {0}", actor.guid.ToString( "N" ) ) );
-		//}
-		
-		//void ResumeActor( NeuronActor actor )
-		//{
-  //          actor.IsActive = true;
-  //          Debug.Log( string.Format( "[NeuronSource] Resume actor {0}", actor.guid.ToString( "N" ) ) );
-		//}
-		
-		//void SuspendAllActors()
-		//{
-		//	foreach( KeyValuePair<int, NeuronActor> iter in allActors )
-		//	{
-  //              iter.Value.IsActive = false;
-  //          }
-		//}
-		
-		NeuronActor FindActorById( int actorID )
-		{
-			NeuronActor actor = null;
-			allActors.TryGetValue( actorID, out actor  );
-			return actor;
-		}
+        }
+
+        //void SuspendActor( NeuronActor actor )
+        //{
+        //          actor.IsActive = false;
+        //          Debug.Log( string.Format( "[NeuronSource] Suspend actor {0}", actor.guid.ToString( "N" ) ) );
+        //}
+
+        //void ResumeActor( NeuronActor actor )
+        //{
+        //          actor.IsActive = true;
+        //          Debug.Log( string.Format( "[NeuronSource] Resume actor {0}", actor.guid.ToString( "N" ) ) );
+        //}
+
+        //void SuspendAllActors()
+        //{
+        //	foreach( KeyValuePair<int, NeuronActor> iter in allActors )
+        //	{
+        //              iter.Value.IsActive = false;
+        //          }
+        //}
+
+        NeuronActor FindActorById(int actorID)
+        {
+            foreach (var act in allActors)
+            {
+                if (act.Value.AvatarIndex == actorID)
+                    return act.Value;
+            }
+            return null;
+        }
 
 
         public NeuronActor FindTrackingMotionByAvatarName(string avatarName)
         {
-            foreach(var act in allActors)
+            foreach (var act in allActors)
             {
                 if (act.Value.AvatarName == avatarName)
                     return act.Value;
             }
             return null;
         }
-
-	}
+    }
 }

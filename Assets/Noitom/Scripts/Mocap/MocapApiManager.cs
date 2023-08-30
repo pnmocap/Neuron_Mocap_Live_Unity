@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using MocapApi;
-using Neuron;
+﻿using Neuron;
 using System;
+using MocapApi;
+using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -19,10 +19,10 @@ public static class MocapApiManager
         }
     }
 
-    static List<NeuronSource> AllNeuronSources = new List < NeuronSource >();
+    static List<NeuronSource> AllNeuronSources = new List<NeuronSource>();
     static Dictionary<string, ulong> connectionApplications = new Dictionary<string, ulong>();
 
-    public static NeuronSource RequareConnection(string address, int port, int portUdpServer,  NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
+    public static NeuronSource RequareConnection(string address, int port, int portUdpServer, NeuronEnums.SocketType socketType, NeuronEnums.SkeletonType skeletonType)
     {
         string connStrId = GetConnectionStringId(address, port, socketType);
         ulong applicationHandle;
@@ -57,7 +57,7 @@ public static class MocapApiManager
 
     static string GetConnectionStringId(string address, int port, NeuronEnums.SocketType socketType)
     {
-        return address +"__" + port + "__" + socketType;
+        return address + "__" + port + "__" + socketType;
     }
 
 
@@ -67,11 +67,11 @@ public static class MocapApiManager
         ulong applicationHandle = 0;
         EMCPError error = IMCPApplication.Application.CreateApplication(ref applicationHandle);
 
-        if(error == EMCPError.Error_None)
+        if (error == EMCPError.Error_None)
         {
             ulong settings = 0;
             IMCPSettings.Settings.CreateSettings(ref settings);
-            if(skeletonType ==  NeuronEnums.SkeletonType.PerceptionNeuronStudio)
+            if (skeletonType == NeuronEnums.SkeletonType.PerceptionNeuronStudio)
                 IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary, settings);
             else
                 IMCPSettings.Settings.SetSettingsBvhData(EMCPBvhData.BvhDataType_Binary | EMCPBvhData.BvhDataType_Mask_LegacyHumanHierarchy, settings);
@@ -80,12 +80,12 @@ public static class MocapApiManager
             if (socketType == NeuronEnums.SocketType.UDP)
             {
                 IMCPSettings.Settings.SetSettingsUDP((ushort)port, settings);
-                IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)portUdpServer, settings);                
+                IMCPSettings.Settings.SetSettingsUDPServer(address, (ushort)portUdpServer, settings);
             }
             else
                 IMCPSettings.Settings.SetSettingsTCP(address, (ushort)port, settings);
             IMCPApplication.Application.SetApplicationSettings(settings, applicationHandle);
-            IMCPSettings.Settings.DestroySettings(settings); 
+            IMCPSettings.Settings.DestroySettings(settings);
             IMCPApplication.Application.OpenApplication(applicationHandle);
 
 
@@ -95,7 +95,7 @@ public static class MocapApiManager
             Debug.LogErrorFormat("Error on connect to appliction, error code: {0}", error);
         }
 
-        if(applicationHandle > 0)
+        if (applicationHandle > 0)
         {
             ulong renderSettings = 0;
             /*
@@ -166,7 +166,7 @@ public static class MocapApiManager
             if (errorCode == EMCPError.Error_None && bufInOutcount > 0)
             {
                 //Debug.Log("bufInOutcount " + bufInOutcount + " avatars : " + AllNeuronSources.Count);
-                for (int i = 0; i < bufInOutcount ; i++)
+                for (int i = 0; i < bufInOutcount; i++)
                 {
                     if (ev[i].eventType == EMCPEventType.MCPEvent_AvatarUpdated)
                     {
@@ -185,7 +185,7 @@ public static class MocapApiManager
                     {
                         HandleTrackerUpdateEvent(ev[i].eventData.trackerData._trackerHandle);
                     }
-                    else if(ev[i].eventType == EMCPEventType.MCPEvent_Error)
+                    else if (ev[i].eventType == EMCPEventType.MCPEvent_Error)
                     {
                         isConnectFailed = true;
                         Debug.LogErrorFormat("Failed to connect to appliction, MCPEvent_Error");
@@ -194,7 +194,7 @@ public static class MocapApiManager
                     {
                         Debug.Log("On event " + ev[i].eventType);
                     }
-                      
+
                 }
 
             }
@@ -207,18 +207,50 @@ public static class MocapApiManager
         //xxx = "";
         ulong rootJointHandler = 0;
         IMCPAvatar.Avatar.GetAvatarRootJoint(ref rootJointHandler, avatarHandle);
-        uint avatarIndex = 0;
 
-        IMCPAvatar.Avatar.GetAvatarIndex(ref avatarIndex, avatarHandle);
-        NeuronActor neuronActor = neuronSource.AcquireActor((int)avatarIndex);
-        if(!neuronActor.HsReceivedData)
+        #region change : 1.if name isn't empty use name; check id is right,if id isn't right change id. 2.if name is empty use id;set name.
+        string avatarName = "";
+        uint avatarID = 0;
+
+        // get name 
+        IMCPAvatar.Avatar.GetAvatarName(ref avatarName, avatarHandle);
+        NeuronActor neuronActor = neuronSource.AcquireActor(avatarName);
+        //name get avatar isn't null
+        if (null != neuronActor)
         {
-            neuronActor.HsReceivedData = true;
-            string avatarName = "";
-            IMCPAvatar.Avatar.GetAvatarName(ref avatarName, avatarHandle);
-            neuronActor.SetAvatarName(avatarName);
-            Debug.LogFormat("Created avatar  name:{0} id:{1}", avatarName, avatarIndex);
+            if (!neuronActor.HsReceivedData)
+            {
+                neuronActor.HsReceivedData = true;
+
+                IMCPAvatar.Avatar.GetAvatarIndex(ref avatarID, avatarHandle);
+                neuronActor.SetAvatarIndex((int)avatarID);
+                Debug.LogFormat("Created avatar avatarID:{0} avatarName:{1}", avatarID, avatarName);
+            }
         }
+        // name get avatar is null , get by id
+        else
+        {
+            // get id 
+            IMCPAvatar.Avatar.GetAvatarIndex(ref avatarID, avatarHandle);
+            neuronActor = neuronSource.AcquireActor((int)avatarID);
+            if (null != neuronActor)
+            {
+                if (!neuronActor.HsReceivedData)
+                {
+                    neuronActor.HsReceivedData = true;
+
+                    IMCPAvatar.Avatar.GetAvatarName(ref avatarName, avatarHandle);
+                    neuronActor.SetAvatarName(avatarName);
+                    Debug.LogFormat("Created avatar avatarName:{0} avatarID:{1}", avatarName, avatarID);
+                }
+            }
+            else
+            {
+                Debug.LogErrorFormat("Create avatar wrong, avatarHandle is :{0} ,neuronSource can't find avatar.", avatarHandle);
+                Debug.LogError("========================================Crash======================================================");
+            }
+        }
+        #endregion 
 
         RecurrenceParseJointPQ(rootJointHandler, neuronActor, 0);
 
@@ -316,7 +348,7 @@ public static class MocapApiManager
     //static ulong[] childrenHandlerIdBufs = new ulong[64];
     static void RecurrenceParseJointPQ(ulong parentJointHandle, NeuronActor neuronSource, int levelCount)
     {
-        if(levelCount > 64)
+        if (levelCount > 64)
         {
             Debug.LogError("RecurrenceParseJointPQ Exception");
             return;
@@ -364,7 +396,7 @@ public static class MocapApiManager
         {
             //if(numberOfChild > childrenHandlerIdBufs.Length)
             // TODO: 用静态buffer代替此处重复new的操作
-            var  childrenHandlerIdBufs = new ulong[numberOfChild];
+            var childrenHandlerIdBufs = new ulong[numberOfChild];
             IMCPJoint.Joint.GetJointChild(childrenHandlerIdBufs, ref numberOfChild, parentJointHandle);
             for (int i = 0; i < numberOfChild; i++)
             {
