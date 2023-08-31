@@ -18,26 +18,26 @@
 ************************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using Neuron;
 using UnityEngine;
 using NeuronDataReaderManaged;
-using Neuron;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Neuron
 {
-	// cache motion data and parse to animator
-	public class NeuronActor
-	{
-		public delegate bool 							NoFrameDataDelegate();
-		public delegate bool							ResumeFrameDataDelegate();
-		
+    // cache motion data and parse to animator
+    public class NeuronActor
+    {
+        public delegate bool NoFrameDataDelegate();
+        public delegate bool ResumeFrameDataDelegate();
 
-		List<NoFrameDataDelegate>						noFrameDataCallbacks = new List<NoFrameDataDelegate>();
-		List<ResumeFrameDataDelegate>					resumeFrameDataCallbacks = new List<ResumeFrameDataDelegate>();
-		
-		public Guid										guid = Guid.NewGuid();
-		public NeuronSource								owner = null;
+
+        List<NoFrameDataDelegate> noFrameDataCallbacks = new List<NoFrameDataDelegate>();
+        List<ResumeFrameDataDelegate> resumeFrameDataCallbacks = new List<ResumeFrameDataDelegate>();
+
+        public Guid guid = Guid.NewGuid();
+        public NeuronSource owner = null;
 
         private string avatarName;
         private int avatarIndex;
@@ -95,79 +95,79 @@ namespace Neuron
 
         public bool HsReceivedData = false;
 
-		public void RegisterNoFrameDataCallback( NoFrameDataDelegate callback )
-		{
-			if( callback != null )
-			{
-				noFrameDataCallbacks.Add( callback );
-			}
-		}
-		
-		public void UnregisterNoFrameDataCallback( NoFrameDataDelegate callback )
-		{
-			if( callback != null )
-			{
-				noFrameDataCallbacks.Remove( callback );
-			}
-		}
-		
-		public void RegisterResumeFrameDataCallback( ResumeFrameDataDelegate callback )
-		{
-			if( callback != null )
-			{
-				resumeFrameDataCallbacks.Add( callback );
-			}
-		}
-		
-		public void UnregisterResumeFrameDataCallback( ResumeFrameDataDelegate callback )
-		{
-			if( callback != null )
-			{
-				resumeFrameDataCallbacks.Remove( callback );
-			}
-		}
-		
-		public NeuronActor( NeuronSource owner, int avatarId )
-		{
-			this.owner = owner;
-			this.avatarIndex = avatarId;
-			
-			if( owner != null )
-			{
-				owner.RegisterResumeActorCallback( OnResumeFrameData );
-				owner.RegisterSuspendActorCallback( OnNoFrameData );
-			}
-		}
-		
-		~NeuronActor()
-		{
-			if( owner != null )
-			{
-				owner.UnregisterResumeActorCallback( OnResumeFrameData );
-				owner.UnregisterSuspendActorCallback( OnNoFrameData );
-			}
-		}
-			
-		public virtual void OnNoFrameData( NeuronActor actor )
-		{
-			for( int i = 0; i < noFrameDataCallbacks.Count; ++i )
-			{
-				noFrameDataCallbacks[i]();
-			}
-		}		
-		
-		public virtual void OnResumeFrameData( NeuronActor actor  )
-		{
-			for( int i = 0; i < resumeFrameDataCallbacks.Count; ++i )
-			{
-				resumeFrameDataCallbacks[i]();
-			}
-		}
-		
+        public void RegisterNoFrameDataCallback(NoFrameDataDelegate callback)
+        {
+            if (callback != null)
+            {
+                noFrameDataCallbacks.Add(callback);
+            }
+        }
 
-		
-		public Vector3 GetReceivedPosition( NeuronBones bone)
-		{
+        public void UnregisterNoFrameDataCallback(NoFrameDataDelegate callback)
+        {
+            if (callback != null)
+            {
+                noFrameDataCallbacks.Remove(callback);
+            }
+        }
+
+        public void RegisterResumeFrameDataCallback(ResumeFrameDataDelegate callback)
+        {
+            if (callback != null)
+            {
+                resumeFrameDataCallbacks.Add(callback);
+            }
+        }
+
+        public void UnregisterResumeFrameDataCallback(ResumeFrameDataDelegate callback)
+        {
+            if (callback != null)
+            {
+                resumeFrameDataCallbacks.Remove(callback);
+            }
+        }
+
+        public NeuronActor(NeuronSource owner, int avatarId)
+        {
+            this.owner = owner;
+            this.avatarIndex = avatarId;
+
+            if (owner != null)
+            {
+                owner.RegisterResumeActorCallback(OnResumeFrameData);
+                owner.RegisterSuspendActorCallback(OnNoFrameData);
+            }
+        }
+
+        ~NeuronActor()
+        {
+            if (owner != null)
+            {
+                owner.UnregisterResumeActorCallback(OnResumeFrameData);
+                owner.UnregisterSuspendActorCallback(OnNoFrameData);
+            }
+        }
+
+        public virtual void OnNoFrameData(NeuronActor actor)
+        {
+            for (int i = 0; i < noFrameDataCallbacks.Count; ++i)
+            {
+                noFrameDataCallbacks[i]();
+            }
+        }
+
+        public virtual void OnResumeFrameData(NeuronActor actor)
+        {
+            for (int i = 0; i < resumeFrameDataCallbacks.Count; ++i)
+            {
+                resumeFrameDataCallbacks[i]();
+            }
+        }
+
+
+
+        public Vector3 GetReceivedPosition(NeuronBones bone)
+        {
             return sourceLocalPositions[(int)bone];
 
         }
@@ -182,14 +182,19 @@ namespace Neuron
             return sourceHasLocalPositions[(int)i];
         }
 
-        public Vector3 GetReceivedRotation( NeuronBones bone )
-		{
+        public Vector3 GetReceivedRotation(NeuronBones bone)
+        {
             return sourceLocalRotations[(int)bone].eulerAngles;
         }
 
         public void SetAvatarName(string name)
         {
             this.avatarName = name;
+        }
+
+        public void SetAvatarIndex(int index)
+        {
+            this.avatarIndex = index;
         }
     }
 }
