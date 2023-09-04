@@ -47,7 +47,7 @@ namespace Neuron
         //[Space(5)]
         [Header("Index of avatar in axis software, default is zero")]
         public int							actorID = 0;
-        [Header("Name of avatar in axis software, will use actorID it's empty")]
+        [Header("Name of avatar in axis software, will use Actor ID when it's empty")]
         public string                       avatarName = "";
 
         //[Space(10)]
