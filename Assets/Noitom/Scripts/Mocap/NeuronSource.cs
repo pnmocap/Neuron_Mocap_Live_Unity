@@ -181,6 +181,7 @@ namespace Neuron
                     if (!string.IsNullOrEmpty(actorName))
                     {
                         actor.SetAvatarName(actorName);
+                        actor.SetAvatarIndex(-1);
                     }
                     allActors.Add(actorIndex, actor);
                     actorIndex++;
