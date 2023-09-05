@@ -172,24 +172,24 @@ namespace Neuron
             return socketType == NeuronEnums.SocketType.TCP ? portTcp : portUdp;
         }
 
-		protected bool Connect()
-		{
+        protected bool Connect()
+        {
             //source = NeuronConnection.Connect( address, port, commandServerPort, socketType );
             source = MocapApiManager.RequareConnection(address, GetPortByConnectionType(), portUdpServer, socketType, skeletonType);
 
-            if ( source != null )
-			{
-                if(string.IsNullOrEmpty(avatarName))
-				    boundActor = source.AcquireActor( actorID );
+            if (source != null)
+            {
+                if (string.IsNullOrEmpty(avatarName))
+                    boundActor = source.AcquireActor(actorID, true);
                 else
-                    boundActor = source.AcquireActor(avatarName);
+                    boundActor = source.AcquireActor(avatarName, true);
                 RegisterCallbacks();
-			}
+            }
 
-			return source != null;
-		}
+            return source != null;
+        }
 
-		protected void Disconnect()
+        protected void Disconnect()
 		{
             //NeuronConnection.Disconnect( boundActor.owner );
             MocapApiManager.Disconnect(boundActor.owner);

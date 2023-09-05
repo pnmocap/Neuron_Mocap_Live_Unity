@@ -114,7 +114,13 @@ namespace Neuron
         //{
         //}
 
-        public NeuronActor AcquireActor(int actorID)
+        /// <summary> 
+        /// AcquireActor by actorID
+        /// </summary>
+        /// <param name="actorID">actorID</param>
+        /// <param name="isCreat">only creat can use it</param>
+        /// <returns></returns>
+        public NeuronActor AcquireActor(int actorID, bool isCreat = false)
         {
             lock (actorCreateDestroyLock)
             {
@@ -123,12 +129,20 @@ namespace Neuron
                 {
                     return actor;
                 }
-
-                actor = CreateActor(actorID);
+                if (isCreat)
+                {
+                    actor = CreateActor(actorID);
+                }
                 return actor;
             }
         }
-        public NeuronActor AcquireActor(string actorName)
+        /// <summary>
+        /// AcquireActor by actorName
+        /// </summary>
+        /// <param name="actorName">actorName</param>
+        /// <param name="isCreat">only creat can use it</param>
+        /// <returns></returns>
+        public NeuronActor AcquireActor(string actorName, bool isCreat = false)
         {
             lock (actorCreateDestroyLock)
             {
@@ -137,8 +151,10 @@ namespace Neuron
                 {
                     return actor;
                 }
-
-                actor = CreateActor(allActors.Count, actorName);
+                if (isCreat)
+                {
+                    actor = CreateActor(allActors.Count, actorName);
+                }
                 return actor;
             }
         }
