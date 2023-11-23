@@ -917,6 +917,15 @@ namespace MocapApi
         CommandStopRecored=5,
         CommandResumeOriginalPosture=6
     };
+    public enum EMCPCalibrateMotionFlag
+    {
+        CalibrateMotionFlag_AutoNextStep=0,
+        CalibrateMotionFlag_ManualNextStep=1
+    };
+    public enum EMCPCalibrateMotionOperation
+    {
+        CalibrateMotionOperation_Next=0
+    };
     public enum EMCPCommandStopCatpureExtraFlag
     {
         StopCatpureExtraFlag_SensorsModulesPowerOff=0,
@@ -1903,8 +1912,8 @@ namespace MocapApi
                 var mocapApi = new Version();
                 mocapApi.major = 0;
                 mocapApi.minor = 0;
-                mocapApi.build = 13;
-                mocapApi.revision = 0xbbfa29bbu;
+                mocapApi.build = 15;
+                mocapApi.revision = 0xbd3bb7a6u;
                 return mocapApi;
             }
         }
@@ -1919,7 +1928,7 @@ namespace MocapApi
         {
             get
             {
-                return "0.0.13.bbfa29bb";
+                return "0.0.15.bd3bb7a6";
             }
         }
         public uint major;
